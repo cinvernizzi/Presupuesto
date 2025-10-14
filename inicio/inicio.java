@@ -12,18 +12,14 @@
 // definimos el paquete
 package inicio;
 
-// importamos las librerías
-import seguridad.formingreso;
-
 // declaramos la clase
 public class inicio {
 
     // constructor de la clase
     public static void main(String[] args){
 
-        // verificamos las credenciales
-        new formingreso();
-
+        // verificamos las bases de datos
+        
     }
 
 }
