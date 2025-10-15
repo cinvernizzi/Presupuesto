@@ -12,6 +12,9 @@
 // definimos el paquete
 package inicio;
 
+// importamos las librerías
+import sql.verifica;
+
 // declaramos la clase
 public class inicio {
 
@@ -19,6 +22,7 @@ public class inicio {
     public static void main(String[] args){
 
         // verificamos las bases de datos
+        new verifica();
         
     }
 
