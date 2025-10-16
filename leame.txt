@@ -1,0 +1,18 @@
+La plataforma utiliza las siguientes librerías que fueron instaladas usando conda
+
+Nuitka      para la creación de ejecutables (ver makefile)
+PySide6     para la implementación de la interfaz
+xlsxwriter  para la generación de las hojas de cálculo
+
+Está desarrollado en Python 3.10 ya que el soporte de nuitka es experimental 
+para versiones posteriores
+
+Sistema sencillo de gestión de presupuestos para un desarrollador Freelance
+
+Lo he desarrollado porque tenía infinidad de presupuestos destinados a distintos clientes y 
+realmente necesitaba alguna aplicación sencilla que me permitiera encontrar rápidamente la 
+información, generar el presupuesto, actualizarlo, etc.
+
+Si bien está orientado al desarrollo de software puede ser fácilmente adaptado a otras finalidades.
+
+Ver la carpeta sql en la cual se describe la estructura de las distintas tablas
