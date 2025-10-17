@@ -16,6 +16,8 @@
 from sql.Actividades import Actividades
 from sql.Clientes import Clientes
 from sql.Personal import Personal
+from sql.Secciones import Secciones
+from sql.Proyectos import Proyectos
 
 class Verifica:
     """
@@ -42,5 +44,11 @@ class Verifica:
         # la tabla de datos personales
         Personal()
 
+        # insertamos las secciones
+        Secciones()
+
+        # los datos de los proyectos
+        Proyectos()
+        
         # verificamos las actividades
         Actividades()

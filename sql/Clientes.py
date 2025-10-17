@@ -57,7 +57,7 @@ class Clientes:
                 self.creaClientes()
 
         # si ocurrió un error
-        except sqlite3.error as e:
+        except sqlite3.Error as e:
 
             # lo presenta 
             print("Error " + e.args[1])
@@ -74,7 +74,7 @@ class Clientes:
         # eliminamos el puntero 
         del self.Cursor
 
-    def creaClientes(self):
+    def creaClientes(self) -> None:
         """
         
             @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
@@ -109,7 +109,7 @@ class Clientes:
             # lo presenta
             print("Error " + e.args[0])
 
-    def creaIndices(self):
+    def creaIndices(self) -> None:
         """
 
             @author Claudio Invernizzi <cinvernizzi@dsgestion.site>

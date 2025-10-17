@@ -39,12 +39,12 @@ class Conectar:
 
             # nos conectamos y establecemos que retorna
             # los datos como un diccionario
-            Lite = sqlite3.connect("presupuesto.db")
-            Lite.row_factory = sqlite3.Row
-            self.Cursor = Lite.cursor()
+            self.Lite = sqlite3.connect("presupuesto.db")
+            self.Lite.row_factory = sqlite3.Row
+            self.Cursor = self.Lite.cursor()
 
         # si ocurrió un error
-        except sqlite3.error as e:
+        except sqlite3.Error as e:
             
             # presenta el error
             print("Error " + e.args[1])
@@ -58,17 +58,30 @@ class Conectar:
 
         """
 
-        # cerramos el puntero
+        # cerramos el puntero y la conexión
         self.Cursor.close()
+        self.Lite.close()
 
     def getConexion(self):
         """
         
             @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
-            Método que simplemente retorna el puntero a la base
+            Método que simplemente retorna la conexión a la base
 
         """
 
         # retornamos
         return self.Cursor    
+
+    def getPuntero(self):
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            Método que retorna el puntero al archivo
+
+        """
+
+        # retornamos el puntero
+        return self.Lite
