@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """
-    Nombre: Proyectos.py
+    Nombre: Presupuesto.py
     Autor: Lic. Claudio Invernizzi
     Fecha: 17/10/2025
     E-Mail: cinvernizzi@dsgestion.site
     Proyecto: Presupuesto
     Comentarios: Clase que verifica la existencia de la tabla 
-                 proyectos y en todo caso la crea
+                 de presupuesto y en todo caso la crea
 
 """
 
@@ -16,7 +16,7 @@
 from clases.dbApi import Conectar
 import sqlite3
 
-class Proyectos:
+class Presupuesto:
     """
     
         @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
@@ -41,7 +41,7 @@ class Proyectos:
         # verificamos si existe
         Consulta = ("SELECT COUNT(*) AS registros " 
                     "FROM sqlite_master WHERE type = 'table' AND "
-                    "     name = 'proyectos'; ")
+                    "     name = 'presupuesto'; ")
 
         # capturamos el error
         try:
@@ -54,7 +54,7 @@ class Proyectos:
             if Resultado["registros"] == 0:
 
                 # creamos la tabla
-                self.creaProyectos()
+                self.creaPresupuesto()
 
         # si ocurrió un error
         except sqlite3.Error as e:
@@ -74,23 +74,22 @@ class Proyectos:
         # eliminamos el puntero 
         del self.Cursor
 
-    def creaProyectos(self) -> None:
+    def creaPresupuesto(self) -> None:
         """
         
             @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
-            Método que crea la tabla de proyectos
+            Método que crea la tabla con los datos de los presupuestos
 
         """
 
-        # componemos la consulta
-        Consulta = ("CREATE TABLE proyectos (" 
-                    "       id INTEGER NOT NULL, " 
-                    "       cliente INTEGER NOT NULL, " 
-                    "       titulo TEXT NOT NULL, " 
-                    "       descripcion BLOB DEFAULT NULL, " 
+        # definimos la consulta
+        Consulta = ("CREATE TABLE presupuesto ( "
+                    "       id INTEGER NOT NULL, "
                     "       fecha TEXT NOT NULL, " 
-                    "FOREIGN KEY(cliente) REFERENCES clientes(id), " 
+                    "       validez INTEGER NOT NULL, " 
+                    "       proyecto INTEGER NOT NULL, "
+                    "FOREIGN KEY(proyecto) REFERENCES proyectos(id), "
                     "PRIMARY KEY ('id' AUTOINCREMENT)); ")
 
         # capturamos el error
@@ -105,7 +104,7 @@ class Proyectos:
         # si ocurrió un error
         except sqlite3.Error as e:
 
-            # presenta el mensaje
+            # lo presenta
             print("Error " + e.args[0])
 
     def creaIndices(self) -> None:
@@ -113,12 +112,12 @@ class Proyectos:
         
             @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
-            Método que crea los índices adicionales de la tabla 
+            Método que crea los índices de los presupuestos
 
         """
 
         # definimos la consulta
-        Consulta = "CREATE INDEX cliente_proyecto ON proyectos('cliente');"
+        Consulta = "CREATE INDEX proyecto_presupuesto ON presupuesto('proyecto'); "
 
         # capturamos el error
         try:
@@ -126,8 +125,8 @@ class Proyectos:
             # asignamos y ejecutamos
             self.Cursor.execute(Consulta);
 
-        # si ocurrió un error
+        # si hubo un error
         except sqlite3.Error as e:
 
-            # presenta el mensaje
-            print ("Error " +  e.args[0])
+            # lo presenta
+            print("Error " + e.args[0])

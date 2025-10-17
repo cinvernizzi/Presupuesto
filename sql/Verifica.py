@@ -18,6 +18,8 @@ from sql.Clientes import Clientes
 from sql.Personal import Personal
 from sql.Secciones import Secciones
 from sql.Proyectos import Proyectos
+from sql.Presupuesto import Presupuesto
+from sql.Vistas import Vistas
 
 class Verifica:
     """
@@ -49,6 +51,12 @@ class Verifica:
 
         # los datos de los proyectos
         Proyectos()
-        
+
+        # los datos de los presupuestos
+        Presupuesto()
+
         # verificamos las actividades
         Actividades()
+
+        # ahora creamos las vistas
+        Vistas()
