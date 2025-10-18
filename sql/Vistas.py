@@ -47,7 +47,7 @@ class Vistas:
 
         # crea la vista de proyectos
         self.creaProyectos()
-
+     
     def __del__(self):
         """
         

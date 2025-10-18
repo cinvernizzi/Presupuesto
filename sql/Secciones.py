@@ -38,7 +38,6 @@ class Secciones:
 
         Lite = Conectar()
         self.Cursor = Lite.getConexion()
-        self.Puntero = Lite.getPuntero()
 
         # verificamos si existe
         Consulta = ("SELECT COUNT(*) AS registros " 
@@ -152,32 +151,18 @@ class Secciones:
                     "       VALUES " 
                     "       (?, ?, ?); ")
 
-        # creamos una lista con los valores 
-        # que vamos a insertar inicialmente
-        registros = []
-        registros.append("Análisis y Diseño")
-        registros.append("Desarrollo y Backend")
-        registros.append("Desarrollo y Frontend")
-        registros.append("Testing")
-        registros.append("Deploy y Configuración")
-        registros.append("Hosting y Licencias")
-
-        # definimos el contador
-        orden = 1
-
         # obtenemos la fecha actual
         ahora = datetime.datetime.now()
         ahora = ahora.strftime("%d/%m/%Y")
 
-        # ahora recorremos la lista
-        for item in registros:
-
-            # agregamos los parámetros
-            parametros = (orden, item, ahora)
-
-            # ejecutamos la consulta y hacemos el commit
-            self.Cursor.execute(Consulta, parametros)
-            self.Puntero.commit()            
-
-            # incrementamos el contador
-            orden += 1
+        # creamos una lista de tuplas con los valores 
+        # que vamos a insertar inicialmente
+        registros = [(1, "Análisis y Diseño", ahora), 
+                     (2, "Desarrollo y Backend", ahora),
+                     (3, "Desarrollo y Frontend", ahora), 
+                     (4, "Testing", ahora), 
+                     (5, "Deploy y Configuracióin", ahora),
+                     (6, "Hosting y Licencias", ahora)]
+        
+        # ejecutamos la consulta usando el executemany
+        self.Cursor.executemany(Consulta, registros)

@@ -12,7 +12,7 @@
 """
 
 # importamos las librerías
-from PyQt6 import QtGui
+from PySide6 import QtGui
 
 
 class Fuentes():
@@ -38,11 +38,9 @@ class Fuentes():
         self.negrita.setFamily("Arial")
         self.negrita.setPointSize(9)
         self.negrita.setBold(True)
-        self.negrita.setWeight(75)
 
         # la fuente normal
         self.normal = QtGui.QFont()
         self.normal.setFamily("Arial")
         self.normal.setPointSize(9)
         self.normal.setBold(False)
-        self.normal.setWeight(50)
