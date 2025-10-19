@@ -298,3 +298,82 @@ class Secciones:
             # presenta el error y retorna
             print("Error " + e.args[0])
             return False
+
+    def puedeBorrar(self, idseccion: int) -> bool:
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            @param idseccion entero con la clave del registro
+
+            @return bool verdadero si puede eliminar
+
+            Método que recibe como parámetro la clave de un registro 
+            y verifica que no tenga registros hijos en la tabla de 
+            actiovidades de los proyectos, retorna verdadero si puede 
+            eliminar
+
+        """
+
+        # componemos la consulta
+        Consulta = ("SELECT COUNT(actividades.id) AS registros "
+                    "FROM actividades "
+                    "WHERE actividades.seccion = ?; ")
+        
+        # asignamos los parámetros
+        parametros = (idseccion, )
+
+        # capturamos el error
+        try:
+
+            # ejecutamos y retornamos
+            self.Cursor.execute(Consulta, parametros)
+            resultado = self.Cursor.fetchone()
+
+            # según los registros 
+            if resultado["registros"] == 0:
+                return True
+            else:
+                return False
+        
+        # si ocurrió un error
+        except sqlite3.Error as e:
+            
+            # presenta el error y retorna
+            print ("Error " + e.args[0])
+            return False
+        
+    def borraSeccion(self, idseccion: int) -> bool:
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            @param entero con la clave del registro
+
+            @return bool resultado de la operación 
+
+            Método que recibe como parámetro la clave de un registro 
+            y ejecuta la consulta de eliminación, retorna el resultado
+            de la operación 
+
+        """
+
+        # componemos la consulta
+        Consulta = "DELETE FROM secciones WHERE secciones.id = ?;"
+
+        # asignamos los parámetros 
+        parametros = (idseccion, )
+
+        # capturamos el error 
+        try: 
+
+            # ejecutamos 
+            self.Cursor.execute(Consulta, parametros)
+            return True
+        
+        # si ocurrió un error
+        except sqlite3.Error as e:
+
+            # presenta el mensaje y retorna
+            print ("Error " + e.args[0])
+            return False

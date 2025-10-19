@@ -24,9 +24,9 @@ clean:
 	echo "Limpiando estructura ..."
 	rm -rf build
 	rm -rf dist
-	rm Presupuesto.spec
-	rm presupuesto.db
 	rm -rf clases/__pycache__
+	rm -rf clientes/__pycache__
+	rm -rf proyectos/__pycache__
 	rm -rf secciones/__pycache__
 	rm -rf sql/__pycache__
 	
