@@ -112,6 +112,7 @@ class Vistas:
                     "              actividades.proyecto AS idproyecto, "
                     "              proyectos.titulo AS proyecto, "
                     "              actividades.seccion AS idseccion, " 
+                    "              secciones.orden AS orden, "
                     "              secciones.etapa AS seccion, "
                     "              actividades.descripcion AS descripcion, " 
                     "              actividades.estimado AS estimado, "

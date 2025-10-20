@@ -119,6 +119,7 @@ class Proyectos:
 
             # ejecutamos 
             self.Cursor.execute(Consulta, parametros)
+            
             # esta comprobación la hacemos porque lastrowid
             # puede devolver tanto la clave como None si 
             # ocurrió un error
