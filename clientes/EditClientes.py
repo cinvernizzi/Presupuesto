@@ -40,21 +40,19 @@ class EditClientes:
 
         # definimos el diálogo
         with ui.dialog() as dialog:
-            with ui.card().style('width: 1300px; height: 370px;'):
+            with ui.card().style('width: 1300px; height: 320px;'):
 
                 # presentamos la primer fila 
                 with ui.row():
                     self.Id = ui.input(label='Id:').tooltip("Clave del registro").classes('w-5')
                     self.Nombre = ui.input(label='Nombre: ').tooltip("Nombre completo del cliente").classes('w-115')
 
-                # la segunda fila 
-                with ui.row():
-                    self.Empresa = ui.input(label='Empresa: ').tooltip("Nombre completo de la empresa").classes('w-130')
-
+                # la segunda fila
                 with ui.row():
                     self.Direccion = ui.input(label='Dirección: ').tooltip("Dirección Postal").classes('w-96')
                     self.Cuil = ui.input(label='CUIL: ').tooltip("Identificación tributaria del cliente").classes('w-32')
 
+                # la tercera fila
                 with ui.row():
                     self.Telefono = ui.input(label='Teléfono: ').tooltip("Teléfono del cliente").classes('w-32')
                     self.Mail = ui.input(label='Mail: ').tooltip("Correo electrónico del cliente").classes('w-56')
@@ -73,4 +71,85 @@ class EditClientes:
         dialog.open()
 
     def verificaCliente(self):
-        pass
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            Método llamado al pulsar el botón grabar que verifica 
+            los datos del formulario 
+
+        """
+
+        # si está dando un alta
+        if self.Id.value == "":
+            self.Consumidor.Id = 0
+        else:
+            self.Consumidor.Id = int(self.Id.value)
+
+        # verifica el nombre
+        if self.Nombre.value == "":
+            ui.notify("Indique el nombre del cliente", position="top-right", type="negative")
+            return
+        else:
+            self.Consumidor.Nombre = self.Nombre.value
+
+        # verifica la dirección 
+        if self.Direccion.value == "":
+            ui.notify("Ingrese la dirección postal del cliente", position="top-right", type="negative")
+            return
+        else:
+            self.Consumidor.Direccion = self.Direccion.value
+
+        # verifica el cuil
+        if self.Cuil.value == "":
+            ui.notify("Ingrese la clave tributaria del cliente", position="top-right", type="negative")
+            return
+        else:
+            self.Consumidor.Identificacion = self.Cuil.value
+
+        # verifica el teléfono
+        if self.Telefono.value == "":
+            ui.notify("Ingrese el teléfono del cliente", position="top-right", type="negative")
+            return
+        else:
+            self.Consumidor.Telefono = self.Telefono.value
+
+        # verifica el mail 
+        if self.Mail.value == "":
+            ui.notify("Ingrese la dirección de correo del cliente", position="top-right", type="negative")
+            return 
+        else:
+            self.Consumidor.Mail = self.Mail.value
+
+        # si llegó hasta aquí grabamos
+        id = self.Consumidor.grabaCliente()
+
+        # según el resultado
+        if id != 0:
+            ui.notify("Registro grabado", position="top-right", type="info")
+            self.Id.value = str(id)
+        else:
+            ui.notify("Ha ocurrido un error", position="top-right", type="negative")
+
+    def getDatosCliente(self, idcliente: int):
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            @param idcliente - clave del registro 
+
+            Método que recibe como parámetro la clave de un registro y 
+            obtiene los valores del mismo y los presenta en el formulario
+
+        """
+
+        # obtenemos el registro
+        self.Consumidor.getDatosCliente(idcliente)
+
+        # asignamos en el formulario
+        self.Id.value = str(self.Consumidor.Id)
+        self.Nombre.value = self.Consumidor.Nombre
+        self.Direccion.value = self.Consumidor.Direccion
+        self.Cuil.value = self.Consumidor.Identificacion
+        self.Telefono.value = self.Consumidor.Telefono
+        self.Mail.value = self.Consumidor.Mail

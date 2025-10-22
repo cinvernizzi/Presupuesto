@@ -15,6 +15,7 @@
 # importamos las librerías
 from nicegui import ui
 from proyectos.Proyectos import Proyectos
+from clientes.Clientes import Clientes
 import datetime
 
 class EditProyectos:
@@ -35,8 +36,12 @@ class EditProyectos:
 
         """
 
-        # instanciamos la clase 
+        # instanciamos las clases 
         self.Proyecto = Proyectos()
+        self.Cliente = Clientes()
+
+        # obtenemos la nómina de clientes
+        listado = self.listaClientes()
 
         # definimos el diálogo
         with ui.dialog() as dialog:
@@ -45,7 +50,7 @@ class EditProyectos:
                 # la primer fila 
                 with ui.row():
                     self.Id = ui.input(label='Id:').tooltip("Clave del registro").classes('w-5')
-                    self.Cliente = ui.select([]).tooltip("Seleccione el cliente de la lista").classes('w-64')
+                    self.Cliente = ui.select(listado).tooltip("Seleccione el cliente de la lista").classes('w-64')
 
                 # la segunda fila
                 with ui.row():
@@ -69,4 +74,96 @@ class EditProyectos:
         dialog.open()
 
     def verificaProyecto(self):
-        pass
+        """
+
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            Método llamado al pulsar el botón grabar que verifica 
+            el formulario antes de enviarlo al servidor 
+
+        """
+
+        # si está insertando 
+        if self.Id.value == "":
+            self.Proyecto.Id = 0
+        else:
+            self.Proyecto.Id = int(self.Id.value)
+
+        # si no seleccionó el cliente
+        if self.Cliente.value is None:
+            ui.notify("Seleccione el cliente del proyecto", position="top-right", type="negative")
+            return
+        else:
+            self.Proyecto.Cliente = self.Cliente.value
+
+        # si no ingresó el título
+        if self.Titulo.value == "":
+            ui.notify("Ingrese el título del proyecto", position="top-right", type="negative")
+            return
+        else:
+            self.Proyecto.Titulo = self.Titulo.value
+
+        # si no ingresó la descripción 
+        if self.Descripcion.value == "":
+            ui.notify("Ingrese la descripción del proyecto", position="top-right", type="negative")
+            return
+        else:
+            self.Proyecto.Descripcion = self.Descripcion.value
+
+        # si llegó hasta aquí grabamos
+        id = self.Proyecto.grabaProyecto()
+
+        # según el valor
+        if id != 0:
+            ui.notify("Registro grabado", position="top-right", type="info")
+            self.Id.value = str(id)
+        else:
+            ui.notify("Ha ocurrido un error", position="top-right", type="negative")
+
+    def getDatosProyecto(self, idproyecto: int):
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            @param idproyecto clave del registro
+
+            Método que recibe como parámetro la clave de un registro y 
+            obtiene y presenta los datos del mismo
+
+        """
+
+        # obtenemos el registro
+        self.Proyecto.getDatosProyecto(idproyecto)
+
+        # asignamos los valores en el formulario
+        self.Id.value = str(self.Proyecto.Id)
+        self.Cliente.value = self.Proyecto.Cliente
+        self.Titulo.value = self.Proyecto.Titulo
+        self.Descripcion.value = self.Proyecto.Descripcion
+        self.Fecha.value = self.Proyecto.Fecha
+
+    def listaClientes(self):
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            Método que obtiene la nómina de clientes y configura 
+            la matriz (la cual retorna) con el formato apropiado
+            para el select
+
+        """
+
+        # obtenemos el listado
+        nomina = self.Cliente.nominaClientes()
+
+        # definimos la variable de retorno
+        listado = {}
+
+        # recorremos el vector
+        for registro in nomina:
+
+            listado.update({registro["id"]:registro["nombre"]})
+
+        # retornamos
+        return listado
+    

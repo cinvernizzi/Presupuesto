@@ -43,6 +43,7 @@ class Clientes:
         # definimos las variables
         self.Id = 0                     # clave del registro
         self.Nombre = ""                # nombre del cliente
+        self.Empresa = ""               # nombre de la empresa
         self.Direccion = ""             # dirección del cliente
         self.Identificacion = ""        # identificación tributaria
         self.Telefono = ""              # número de teléfono

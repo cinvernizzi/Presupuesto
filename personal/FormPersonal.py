@@ -142,7 +142,7 @@ class FormPersonal:
         # si salió todo bien
         if id != 0:
             ui.notify("Registro grabado", position="top-right", type="info")
-            self.Id.value = id
+            self.Id.value = str(id)
         else:
             ui.notify("Ha ocurrido un error", position="top-right", type="negative")
 
