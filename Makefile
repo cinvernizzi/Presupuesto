@@ -24,8 +24,10 @@ clean:
 	echo "Limpiando estructura ..."
 	rm -rf build
 	rm -rf dist
+	rm -rf actividades/__pycache__
 	rm -rf clases/__pycache__
 	rm -rf clientes/__pycache__
+	rm -rf personal/__pycache__
 	rm -rf proyectos/__pycache__
 	rm -rf secciones/__pycache__
 	rm -rf sql/__pycache__

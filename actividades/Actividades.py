@@ -84,7 +84,7 @@ class Actividades:
         if self.Id == 0:
             estado = self.nuevaActividad()
         else:
-            esdtado = self.editaActividad()
+            estado = self.editaActividad()
 
         # retornamos
         return estado
@@ -357,3 +357,22 @@ class Actividades:
             retorna el resultado de la operación 
             
         """
+
+        # componemos la consulta
+        Consulta = "DELETE FROM actividades WHERE id = ?;"
+        parametros = (idactividad, )
+
+        # capturamos el error
+        try:
+
+            # ejecutamos y retornamos
+            self.Cursor.execute(Consulta, parametros)
+            return True
+        
+        # si ocurrió un error
+        except sqlite3.Error as e:
+
+            # presenta el mensaje y retorna
+            print("Error " + e.args[0])
+            return False
+        

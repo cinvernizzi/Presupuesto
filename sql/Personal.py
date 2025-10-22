@@ -86,6 +86,7 @@ class Personal:
         # componemos la consulta
         Consulta = ("CREATE TABLE personal ( "
                     "       id INTEGER NOT NULL, " 
+                    "       nombre TEXT NOT NULL, "
                     "       empresa TEXT NOT NULL, " 
                     "       direccion TEXT NOT NULL, " 
                     "       cuil TEXT DEFAULT NULL, " 

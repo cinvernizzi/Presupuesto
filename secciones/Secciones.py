@@ -282,7 +282,7 @@ class Secciones:
                     "       secciones.etapa AS etapa, "
                     "       secciones.fecha AS fecha "
                     "FROM secciones "
-                    "ORDER BY secciones.etapa; ")
+                    "ORDER BY secciones.orden; ")
         
         # capturamos el error
         try:

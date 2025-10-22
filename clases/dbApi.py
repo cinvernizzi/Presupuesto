@@ -51,18 +51,6 @@ class Conectar:
             # presenta el error
             print("Error " + e.args[1])
 
-    def __del__(self):
-        """
-        
-            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
-
-            Destructor de la clase, simplemente cierra la conexión 
-
-        """
-
-        # cerramos el puntero
-        self.Cursor.close()
-
     def getConexion(self):
         """
         
