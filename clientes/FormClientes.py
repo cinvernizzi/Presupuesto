@@ -15,6 +15,7 @@
 # importamos las librerías
 from nicegui import ui
 from clientes.EditClientes import EditClientes
+from clientes.Clientes import Clientes
 
 class FormClientes:
     """
@@ -38,34 +39,61 @@ class FormClientes:
         # abrimos la columna 
         with ui.row():
 
-            # presentamos el menú 
-            with ui.column():
-                ui.button("Nuevo", icon='add', on_click=self.nuevoCliente).tooltip("Pulse para grabar el registro").classes('w-40')
-                ui.button("Buscar", icon='search', on_click=self.buscaCliente).tooltip("Pulse para grabar el registro").classes('w-40')
-                ui.button("Ayuda", icon='help', on_click=self.ayudaCliente).tooltip("Pulse para grabar el registro").classes('w-40')
-
             # los títulos de las columnas
-            columnas = [
-                        {'name': 'id', 'label': 'Id', 'field': 'id'},
-                        {'name': 'nombre', 'label': 'nombre', 'field': 'nombre'},
-                        {'name': 'identificacion', 'label': 'Id.Tributaria', 'field': 'identificacion'},
-                        {'name': 'telefono', 'label': 'Teléfono', 'field': 'telefono'},
-                        {'name': 'mail', 'label': 'E-Mail', 'field': 'mail'},
-                        {'name': 'fecha', 'label': 'Fecha', 'field': 'fecha'},
-                        {'name': 'ver', 'label': 'Ver', 'field': 'ver'}
-            ]
+            columnas = [{'name': 'id', 'label': 'Id', 'field': 'id','align':'center'},
+                        {'name': 'nombre', 'label': 'Nombre', 'field': 'nombre','align':'left'},
+                        {'name': 'identificacion', 'label': 'Id.Tributaria', 'field': 'identificacion','align':'center'},
+                        {'name': 'telefono', 'label': 'Teléfono', 'field': 'telefono','align':'right'},
+                        {'name': 'mail', 'label': 'E-Mail', 'field': 'mail','align':'left'},
+                        {'name': 'fecha', 'label': 'Fecha', 'field': 'fecha','align':'center'}]
 
             # agregamos la tabla de clientes
-            tablaclientes = ui.table(columns=columnas, rows=[], pagination={'rowsPerPage': 15}).props('virtual-scroll')
+            self.tablaclientes = ui.table(columns=columnas, 
+                                          rows=[], 
+                                          title='Clientes Registrados',
+                                          row_key='id',
+                                          selection='single',
+                                          on_select=lambda e: self.cargaCliente(e.selection),
+                                          pagination={'rowsPerPage': 5}).props('virtual-scroll').classes('w-260')
 
-            # definimos el evento del botón ver
-            tablaclientes.add_slot('body-cell-ver', '''
-                <q-td :props="props">
-                    <q-btn label="Ver" @click="() => $parent.$emit('notify', props.row.id)" flat />
-                </q-td>
-            ''')
-            tablaclientes.on('ver', lambda e: ui.notify(f'Hi {e.args["name"]}!'))        
+            # presentamos el menú 
+            with ui.column():
+                ui.input('Buscar...').bind_value(self.tablaclientes, 'filter').props('clearable').classes('w-40')
+                ui.button("Nuevo", icon='add', on_click=self.nuevoCliente).tooltip("Pulse para insertar un cliente").classes('w-40')
+                ui.button("Ayuda", icon='help', on_click=self.ayudaCliente).tooltip("Muestra la ayuda del sistema").classes('w-40')
 
+        # cargamos la nómina de clientes
+        self.nominaClientes()
+
+    def nominaClientes(self):
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            Método llamado desde el constructor que carga en la grilla 
+            la nómina de clientes
+
+        """
+        # instanciamos la clase y obtenemos la nómina
+        clientes = Clientes()
+        nomina = clientes.nominaClientes()
+
+        # si no hay registros
+        if not nomina:
+            return
+        else:
+
+            # recorremos el vector
+            for registro in nomina:
+
+                # agregamos a la tabla 
+                self.tablaclientes.add_row({'id': registro["id"], 
+                                            'nombre': registro["nombre"],
+                                            'identificacion': registro["identificacion"],
+                                            'telefono': registro["telefono"],
+                                            'mail': registro["mail"],
+                                            'fecha' : registro["fecha"]})
+        
     def nuevoCliente(self):
         """
         
@@ -77,16 +105,29 @@ class FormClientes:
         """
 
         # abrimos el diálogo
-        EditClientes()
+        EditClientes(self)
         
-    def buscaCliente(self):
+    def cargaCliente(self, e):
         """
         
             @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
-            Método que abre el díalogo de búsqueda de cliente
+            @param e el vector con los datos de la fila 
+
+            Método llamado al seleccionar una fila de la grilla 
+            que recibe como parámetro el vector con los datos 
+            de la misma
 
         """
+
+        # obtenemos la clave del registro
+        id = int(e[0]["id"])
+
+        # abrimos el formulario 
+        formulario = EditClientes(self)
+
+        # cargamos el registro
+        formulario.getDatosCliente(id)
 
     def ayudaCliente(self):
         """

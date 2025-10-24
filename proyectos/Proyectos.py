@@ -150,12 +150,13 @@ class Proyectos:
 
         # componemos la consulta
         Consulta = ("UPDATE proyectos SET "
+                    "       cliente = ?,  "
                     "       titulo = ?, "
                     "       descripcion = ? "
                     "WHERE proyectos.id = ?; ")
         
         # asignamos los parámetros
-        parametros = (self.Titulo, self.Descripcion, self.Id)
+        parametros = (self.Cliente, self.Titulo, self.Descripcion, self.Id)
 
         # capturamos el error
         try: 
@@ -270,6 +271,41 @@ class Proyectos:
             print("Error " + e.args[0])
             return False
         
+    def nominaProyectos(self):
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            @return vector con la nómina de proyectos
+
+            Método que retorna la nómina completa de proyectos 
+            declarados
+
+        """
+
+        # la componemos sobre la vista
+        Consulta = ("SELECT v_proyectos.id AS id, "
+                    "       v_proyectos.cliente AS cliente, "
+                    "       v_proyectos.telefono AS telefono, "
+                    "       v_proyectos.mail AS mail, "
+                    "       v_proyectos.titulo AS titulo "
+                    "FROM v_proyectos "
+                    "ORDER BY v_proyectos.titulo; ")        
+
+        # capturamos el error
+        try: 
+
+            # ejecutamos y retornamos
+            self.Cursor.execute(Consulta)
+            return self.Cursor.fetchall()
+        
+        # si ocurrió un error
+        except sqlite3.Error as e:
+
+            # presenta el mensaje y retorna
+            print ("Error " +  e.args[0])
+            return False
+
     def proyectosCliente(self, idcliente: int) -> list | bool:
         """
         

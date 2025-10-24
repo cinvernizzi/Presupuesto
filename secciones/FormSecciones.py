@@ -42,23 +42,26 @@ class FormSecciones:
         # abrimos la columna 
         with ui.row():
 
-            with ui.column():
-                ui.button("Nuevo", icon='add', on_click=self.nuevaSeccion).tooltip("Pulse para grabar el registro").classes('w-40')
-                ui.button("Buscar", icon='search', on_click=self.nuevaSeccion).tooltip("Pulse para grabar el registro").classes('w-40')
-                ui.button("Ayuda", icon='help', on_click=self.nuevaSeccion).tooltip("Pulse para grabar el registro").classes('w-40')
-
             # los títulos de las columnas
-            columnas = [
-                        {'name': 'id', 'label': 'Id', 'field': 'id','align':'center'},
+            columnas = [{'name': 'id', 'label': 'Id', 'field': 'id','align':'center'},
                         {'name': 'orden', 'label': 'Orden', 'field': 'orden','align':'center'},
                         {'name': 'etapa', 'label': 'Etapa', 'field': 'etapa', 'align':'left'},
-                        {'name': 'fecha', 'label': 'Fecha', 'field': 'fecha', 'align':'center'},
-                        {'name': 'ver', 'label': 'Ver', 'align': 'center'}
-            ]
+                        {'name': 'fecha', 'label': 'Fecha', 'field': 'fecha', 'align':'center'}]
 
             # agregamos la tabla de clientes
-            self.tablasecciones = ui.table(columns=columnas, rows=[], pagination={'rowsPerPage': 6}).props('virtual-scroll')
-            
+            self.tablasecciones = ui.table(columns=columnas, 
+                                           rows=[], 
+                                           title='Secciones de un Presupuesto',
+                                           row_key='id',
+                                           selection='single',
+                                           on_select=lambda e: self.cargaSeccion(e.selection),
+                                           pagination={'rowsPerPage': 5}).props('virtual-scroll').classes('w-180')
+
+            with ui.column():
+                ui.input('Buscar...').bind_value(self.tablasecciones, 'filter').props('clearable').classes('w-40')
+                ui.button("Nuevo", icon='add', on_click=self.nuevaSeccion).tooltip("Pulse para ingresar un registro").classes('w-40')
+                ui.button("Ayuda", icon='help', on_click=self.nuevaSeccion).tooltip("Ayuda del sistema").classes('w-40')
+
         # cargamos los elementos de la tabla
         self.cargaSecciones()
 
@@ -92,16 +95,8 @@ class FormSecciones:
                 self.tablasecciones.add_row({'id': registro["id"], 
                                              'orden': registro["orden"],
                                              'etapa': registro["etapa"],
-                                             'fecha': registro["fecha"],
-                                             'ver': 'Ver'})
-                # definimos los eventos luego de cargar la tabla 
-                self.tablasecciones.add_slot('body-cell-ver', '''
-                    <q-td :props="props">
-                    <q-btn icon="edit" @click="() => $parent.$emit('edit', props.row)" flat />
-                    </q-td>
-                ''')
-                self.tablasecciones.on('edit', lambda e: ui.notify(f'Hi {e.args["id"]}!'))        
-
+                                             'fecha': registro["fecha"]})
+                
     def nuevaSeccion(self):
         """
         
@@ -113,6 +108,26 @@ class FormSecciones:
         """
 
         # abrimos el diálogo
-        EditSecciones()
+        EditSecciones(self)
 
+    def cargaSeccion(self, e):
+        """
+
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            @param vector con los datos del registro
+
+            Método llamado al seleccionar una fila de la grilla 
+            que abre el formulario para edición        
+        
+        """
+
+        # abrimos el formulario
+        formulario = EditSecciones(self)
+
+        # asignamos los valores en el formulario
+        formulario.Id.value = e[0]["id"]
+        formulario.Orden.value = e[0]["orden"]
+        formulario.Seccion.value = e[0]["etapa"]
+        formulario.Fecha.value = e[0]["fecha"]
         

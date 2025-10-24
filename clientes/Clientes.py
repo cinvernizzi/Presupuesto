@@ -330,7 +330,7 @@ class Clientes:
             return False
         
 
-    def nominaClientes(self) -> list | bool:
+    def nominaClientes(self):
         """
         
             @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
@@ -346,9 +346,10 @@ class Clientes:
         # componemos la consulta
         Consulta = ("SELECT clientes.id AS id, "
                     "       clientes.nombre AS nombre, "
-                    "       clientes.direccion AS direccion, "
+                    "       clientes.identificacion AS identificacion, "
                     "       clientes.telefono AS telefono, "
-                    "       clientes.mail AS mail "
+                    "       clientes.mail AS mail, " 
+                    "       clientes.fecha AS fecha "
                     "FROM clientes "
                     "ORDER BY clientes.nombre; ")
 

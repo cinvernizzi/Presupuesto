@@ -264,7 +264,7 @@ class Secciones:
             print("Error " + e.args[0])
             return False
         
-    def nominaSecciones(self) -> list | bool:
+    def nominaSecciones(self):
         """
         
             @author Claudio Invernizzi <cinvernizzi@dsgestion.site>

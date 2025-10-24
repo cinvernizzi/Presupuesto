@@ -38,6 +38,7 @@ with ui.header(fixed=True):
 with ui.tabs() as tabs:
     ui.tab('proyectos', label='Proyectos', icon='home').tooltip("Nómina de Proyectos Registrados")
     ui.tab('clientes', label='Clientes', icon='account_box').tooltip("Nómina de Clientes Registrados")
+    ui.tab('presupuestos', label='Presupuestos', icon='fact_check').tooltip("Presupuestos generados")    
     ui.tab('personal', label='Personal', icon='transcribe').tooltip("Datos que figurarán en el presupuesto")
     ui.tab('administracion', label='Administración', icon='settings').tooltip("Administración del Sistema")
 
