@@ -220,15 +220,20 @@ class Personal:
             # ejecutamos y asignamos los valores en 
             # las variables de clase
             self.Cursor.execute(Consulta)
-            resultado = self.Cursor.fetchone()
-            self.Id = resultado["id"]
-            self.Nombre = resultado["nombre"]
-            self.Empresa = resultado["empresa"]
-            self.Direccion = resultado["direccion"]
-            self.Cuil = resultado["cuil"]
-            self.Telefono = resultado["telefono"]
-            self.Mail = resultado["mail"]
-            self.Fecha = resultado["fecha"]
+
+            # verificamos si hay registros
+            if self.Cursor.rowcount > 0:
+
+                # asignamos en la clase
+                resultado = self.Cursor.fetchone()
+                self.Id = resultado["id"]
+                self.Nombre = resultado["nombre"]
+                self.Empresa = resultado["empresa"]
+                self.Direccion = resultado["direccion"]
+                self.Cuil = resultado["cuil"]
+                self.Telefono = resultado["telefono"]
+                self.Mail = resultado["mail"]
+                self.Fecha = resultado["fecha"]
 
             # retornamos
             return True

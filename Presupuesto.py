@@ -20,6 +20,7 @@ from sql.Verifica import Verifica
 from secciones.FormSecciones import FormSecciones
 from clientes.FormClientes import FormClientes
 from proyectos.FormProyectos import FormProyectos
+from presupuestos.FormPresupuestos import FormPresupuestos
 from personal.FormPersonal import FormPersonal
 
 # verificamos que exista el directorio temporal
@@ -56,6 +57,12 @@ with ui.tab_panels(tabs, value='proyectos').classes('w-full'):
 
         # cargamos la grilla de clientes
         FormClientes()
+
+    # el panel de presupuestos
+    with ui.tab_panel('presupuestos'):
+
+        # cargamos la grilla de presupuestos
+        FormPresupuestos()
 
     # el panel de datos personales
     with ui.tab_panel('personal'):

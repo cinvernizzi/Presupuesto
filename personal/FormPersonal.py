@@ -195,12 +195,15 @@ class FormPersonal:
         # obtenemos los datos del registro
         self.Datos.getDatosPersonal()
 
-        # asignamos en el formulario
-        self.Id.value = str(self.Datos.Id)
-        self.Nombre.value = self.Datos.Nombre
-        self.Empresa.value = self.Datos.Empresa
-        self.Direccion.value = self.Datos.Direccion
-        self.Cuil.value = self.Datos.Cuil
-        self.Telefono.value = self.Datos.Telefono
-        self.Mail.value = self.Datos.Mail
-        self.Fecha.value = self.Datos.Fecha
+        # si hay un registro activo
+        if self.Datos.Id > 0:
+
+            # asignamos en el formulario
+            self.Id.value = str(self.Datos.Id)
+            self.Nombre.value = self.Datos.Nombre
+            self.Empresa.value = self.Datos.Empresa
+            self.Direccion.value = self.Datos.Direccion
+            self.Cuil.value = self.Datos.Cuil
+            self.Telefono.value = self.Datos.Telefono
+            self.Mail.value = self.Datos.Mail
+            self.Fecha.value = self.Datos.Fecha

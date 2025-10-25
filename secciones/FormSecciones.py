@@ -60,7 +60,7 @@ class FormSecciones:
             with ui.column():
                 ui.input('Buscar...').bind_value(self.tablasecciones, 'filter').props('clearable').classes('w-40')
                 ui.button("Nuevo", icon='add', on_click=self.nuevaSeccion).tooltip("Pulse para ingresar un registro").classes('w-40')
-                ui.button("Ayuda", icon='help', on_click=self.nuevaSeccion).tooltip("Ayuda del sistema").classes('w-40')
+                ui.button("Ayuda", icon='help', on_click=self.ayudaSeccion).tooltip("Ayuda del sistema").classes('w-40')
 
         # cargamos los elementos de la tabla
         self.cargaSecciones()
@@ -131,3 +131,12 @@ class FormSecciones:
         formulario.Seccion.value = e[0]["etapa"]
         formulario.Fecha.value = e[0]["fecha"]
         
+    def ayudaSeccion(self):
+        """
+        
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+            Método que abre el diálogo emergente con la ayuda del 
+            sistema
+            
+        """

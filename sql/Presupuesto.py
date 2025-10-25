@@ -88,7 +88,8 @@ class Presupuesto:
                     "       id INTEGER NOT NULL, "
                     "       fecha TEXT NOT NULL, " 
                     "       validez INTEGER NOT NULL, " 
-                    "       proyecto INTEGER NOT NULL, "
+                    "       proyecto INTEGER NOT NULL, " 
+                    "       importe REAL DEFAULT NULL, "
                     "FOREIGN KEY(proyecto) REFERENCES proyectos(id), "
                     "PRIMARY KEY ('id' AUTOINCREMENT)); ")
 

@@ -29,6 +29,7 @@ clean:
 	rm -rf clientes/__pycache__
 	rm -rf personal/__pycache__
 	rm -rf proyectos/__pycache__
+	rm -rf presupuestos/__pycache__
 	rm -rf secciones/__pycache__
 	rm -rf sql/__pycache__
 	

@@ -75,13 +75,14 @@ class Vistas:
                     "              presupuesto.fecha AS fecha, "
                     "              presupuesto.validez AS validez, "
                     "              presupuesto.proyecto AS idproyecto, " 
-                    "              proyectos.cliente AS idcliente, " 
-                    "              clientes.nombre AS nombre, " 
+                    "              proyectos.titulo AS proyecto, " 
+                    "              proyectos.cliente AS idcliente, "
+                    "              clientes.nombre AS cliente, " 
                     "              clientes.direccion AS direccion, " 
                     "              clientes.identificacion AS identificacion, " 
                     "              clientes.telefono AS telefono, " 
                     "              clientes.mail AS mail, " 
-                    "              proyectos.titulo AS titulo "
+                    "              presupuesto.importe AS importe "
                     "        FROM presupuesto INNER JOIN proyectos ON presupuesto.proyecto = proyectos.id " 
                     "                         INNER JOIN clientes ON proyectos.cliente = clientes.id; ")
 
