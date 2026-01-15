@@ -13,15 +13,16 @@
 """
 
 # Importamos las librerías
-import sys
 import os
-from nicegui import ui
+import sys
 from sql.Verifica import Verifica
-from secciones.FormSecciones import FormSecciones
+from clientes.FormNomina import NominaClientes
 from clientes.FormClientes import FormClientes
-from proyectos.FormProyectos import FormProyectos
-from presupuestos.FormPresupuestos import FormPresupuestos
-from personal.FormPersonal import FormPersonal
+from proyectos.NominaProyectos import NominaProyectos
+from clases.fuentes import Fuentes
+from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QLabel
+from PySide6 import QtCore
+from PySide6.QtGui import QIcon
 
 # verificamos que exista el directorio temporal
 if not os.path.exists("temp"):
@@ -30,59 +31,59 @@ if not os.path.exists("temp"):
 # verificamos que existan las bases de datos
 Verifica()
 
-# definimos el encabezado
-with ui.header(fixed=True):
-     ui.image("recursos/logo.png").classes('w-16')
-     ui.label("Sistema de Presupuesto").style('text-align: center; font-size: 36px; font-weight: bold;')
+class Inicio(QWidget):
+    def __init__(self):
+        super().__init__()
 
-# definimos los tabuladores
-with ui.tabs() as tabs:
-    ui.tab('proyectos', label='Proyectos', icon='home').tooltip("Nómina de Proyectos Registrados")
-    ui.tab('clientes', label='Clientes', icon='account_box').tooltip("Nómina de Clientes Registrados")
-    ui.tab('presupuestos', label='Presupuestos', icon='fact_check').tooltip("Presupuestos generados")    
-    ui.tab('personal', label='Personal', icon='transcribe').tooltip("Datos que figurarán en el presupuesto")
-    ui.tab('administracion', label='Administración', icon='settings').tooltip("Administración del Sistema")
+        # implementamos la fuente
+        fuente = Fuentes()
 
-# definimos los paneles 
-with ui.tab_panels(tabs, value='proyectos').classes('w-full'):
+        # definimos el tamaño inicial y el logo
+        self.setGeometry(100, 200, 1050, 650)
+        self.setWindowIcon(QIcon('recursos/logo.png'))
 
-    # el panel de proyectos
-    with ui.tab_panel('proyectos'):
+        # aquí vamos a definir un layout contenedor
+        contenedor = QVBoxLayout()
 
-        # cargamos la grilla de proyectos
-        FormProyectos()
+        # definimos el título
+        layoutTitulo = QVBoxLayout()
+        lTitulo = QLabel("Gestión de Presupuestos")
+        lTitulo.setMaximumHeight(30)
+        lTitulo.setFont(fuente.negrita)
+        lTitulo.setAlignment(QtCore.Qt.AlignCenter)
+        layoutTitulo.addWidget(lTitulo)
 
-    # el panel de clientes
-    with ui.tab_panel('clientes'):
+        # agregamos el título
+        contenedor.addLayout(layoutTitulo)
 
-        # cargamos la grilla de clientes
-        FormClientes()
+        # definimos el segundo layout
+        datos = QHBoxLayout()
+        NominaClientes(datos)
+        
+        # ahora definimos otro contenedor al cual 
+        # agregamos el formulario de clientes y 
+        # la nómina de proyectos
+        contenedor2 = QVBoxLayout()
+        FormClientes(contenedor2)
+        NominaProyectos(contenedor2)
 
-    # el panel de presupuestos
-    with ui.tab_panel('presupuestos'):
+        # agregamos el layout 2
+        datos.addLayout(contenedor2)
 
-        # cargamos la grilla de presupuestos
-        FormPresupuestos()
+        # agregamos el layout de datos 
+        contenedor.addLayout(datos)
 
-    # el panel de datos personales
-    with ui.tab_panel('personal'):
+        # definimos el pié 
+        lPie = QLabel("Lic. Claudio Invernizzi / cinvernizzi@dsgestion.site")        
+        lPie.setMaximumHeight(20)
+        lPie.setAlignment(QtCore.Qt.AlignCenter)
+        contenedor.addWidget(lPie)
 
-        # cargamos el formulario de datos personales
-        FormPersonal()
+        # fijamos el layout
+        self.setLayout(contenedor)  
+        self.show() 
 
-    # el panel de administración
-    with ui.tab_panel('administracion') as formadministracion:
-
-        # instanciamos la clase
-        FormSecciones()
-
-
-# lanzamos la aplicación 
-ui.run(host='0.0.0.0',
-       port=8080,
-       title='Presupuesto',
-       reload=True,
-       native=False,
-       show=True,
-       favicon='recursos/logo.png',
-       language='es')
+# lanzamos la aplicación
+app = QApplication([])
+application = Inicio()
+sys.exit(app.exec())

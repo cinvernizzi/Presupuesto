@@ -2,138 +2,178 @@
 # -*- coding: utf-8 -*-
 
 """
+
     Nombre: FormClientes.py
     Autor: Lic. Claudio Invernizzi
-    Fecha: 21/10/2025
+    Fecha: 15/01/2026
     E-Mail: cinvernizzi@dsgestion.site
+    Licencia: GPL
     Proyecto: Presupuesto
-    Comentarios: Clase que define la grilla de los clientes
-                 registrados
+    Comentarios: Clase que recibe como parámetro el contenedor de 
+                 el formulario de clientes y agrega los elementos 
+                 al mismo 
 
 """
 
 # importamos las librerías
-from nicegui import ui
-from clientes.EditClientes import EditClientes
-from clientes.Clientes import Clientes
+from clases.fuentes import Fuentes
+from PySide6 import QtGui
+from PySide6 import QtCore
+from PySide6.QtWidgets import QLabel, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton
 
 class FormClientes:
     """
     
-        @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+        :Author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
-        Definición de la clase
+        Definición de la clase 
 
     """
 
-    def __init__(self):
+    def __init__(self, contenedor):
         """
+
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>        
+        :param self: la clase contenedora
+        :param contenedor: el layout contenedor del formulario 
+
+        Constructor de la clase, recibe como parámetro el layout
+        contenedor del formulario 
+
+        """
+
+        # instanciamos la fuente
+        fuente = Fuentes()
+
+        cTitulo = QVBoxLayout()
+        cTitulo.setAlignment(QtCore.Qt.AlignTop)
+        lForm = QLabel("Datos del Cliente")
+        lForm.setFont(fuente.normal)
+        lForm.setAlignment(QtCore.Qt.AlignTop)
+        cTitulo.addWidget(lForm)
+
+        # definimos la primer fila 
+        fila1 = QHBoxLayout()
+        fila1.setAlignment(QtCore.Qt.AlignTop)
+
+        # agregamos la clave
+        lId = QLabel("Id:")
+        lId.setFont(fuente.normal)
+        fila1.addWidget(lId)
+        tId = QLineEdit()
+        tId.setFont(fuente.normal)
+        tId.setToolTip("Clave del Registro")
+        tId.setMaximumWidth(40)
+        tId.setMinimumHeight(30)
+        tId.setReadOnly(True)
+        fila1.addWidget(tId)
+
+        # agregamos el nombre
+        lNombre = QLabel("Nombre:")
+        lNombre.setFont(fuente.normal)
+        fila1.addWidget(lNombre)
+        tNombre = QLineEdit()
+        tNombre.setFont(fuente.normal)
+        tNombre.setToolTip("Nombre completo del cliente")
+        tNombre.setMinimumWidth(200)
+        tNombre.setMinimumHeight(30)
+        fila1.addWidget(tNombre)
+
+        # agregamos la dirección 
+        lDireccion = QLabel("Domicilio:")
+        lDireccion.setFont(fuente.normal)
+        fila1.addWidget(lDireccion)
+        tDireccion = QLineEdit()
+        tDireccion.setFont(fuente.normal)
+        tDireccion.setToolTip("Dirección postal del cliente")
+        tDireccion.setMinimumWidth(200)
+        tDireccion.setMinimumHeight(30)
+        fila1.addWidget(tDireccion)
+
+        # agregamos la primer fila 
+        cTitulo.addLayout(fila1)
+
+        # definimos la segunda fila 
+        fila2 = QHBoxLayout()
+        fila2.setAlignment(QtCore.Qt.AlignTop)
+
+        # agregamos la clave tributaria
+        lTributaria = QLabel("Id Tributaria:")
+        lTributaria.setFont(fuente.normal)
+        fila2.addWidget(lTributaria)
+        tTributaria = QLineEdit()
+        tTributaria.setFont(fuente.normal)
+        tTributaria.setToolTip("Clave tributaria del cliente")
+        tTributaria.setMaximumWidth(120)
+        tTributaria.setMinimumHeight(30)
+        fila2.addWidget(tTributaria)
+
+        # agregamos el teléfono 
+        lTelefono = QLabel("Teléfono:")
+        lTelefono.setFont(fuente.normal)
+        fila2.addWidget(lTelefono)
+        tTelefono = QLineEdit()
+        tTelefono.setFont(fuente.normal)
+        tTelefono.setToolTip("Teléfono del cliente")
+        tTelefono.setMaximumWidth(150)
+        tTelefono.setMinimumHeight(30)
+        fila2.addWidget(tTelefono)
+
+        # agregamos el mail 
+        lMail = QLabel("E-Mail:")
+        lMail.setFont(fuente.normal)
+        fila2.addWidget(lMail)
+        tMail = QLineEdit()
+        tMail.setFont(fuente.normal)
+        tMail.setToolTip("Dirección de correo electrónico")
+        tMail.setMinimumHeight(30)
+        fila2.addWidget(tMail)
+
+        # agregamos la fecha de alta
+        lAlta = QLabel("Alta:")
+        lAlta.setFont(fuente.normal)
+        fila2.addWidget(lAlta)
+        tAlta = QLineEdit()
+        tAlta.setFont(fuente.normal)
+        tAlta.setToolTip("Fecha de alta del registro")
+        tAlta.setMaximumWidth(90)
+        tAlta.setMinimumHeight(30)
+        tAlta.setReadOnly(True)
+        fila2.addWidget(tAlta)
+
+        # agregamos la segunda fila 
+        cTitulo.addLayout(fila2)
+
+        # definimos la tercer fila 
+        fila3 = QHBoxLayout()
+        fila3.setAlignment(QtCore.Qt.AlignTop)
+
+        # agregamos un espaciador
+        fila3.addStretch()
         
-            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+        # agregamos el botón grabar
+        btnGrabar = QPushButton("Grabar")
+        btnGrabar.setFixedHeight(30)
+        btnGrabar.setFixedWidth(120)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("recursos/grabar.png"))
+        btnGrabar.setIcon(icon1)
+        btnGrabar.setToolTip("Graba el registro en la base")
+        fila3.addWidget(btnGrabar)
 
-            Constructor de la clase, carga en el tabulador la 
-            definición de la grilla
+        # agregamos el botón cancelar
+        btnCancelar = QPushButton("Cancelar")
+        btnCancelar.setFixedWidth(120)
+        btnCancelar.setFixedHeight(30)
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("recursos/cancelar.png"))
+        btnCancelar.setIcon(icon2)
+        btnCancelar.setToolTip("Reinicia el formulario")
+        fila3.addWidget(btnCancelar)
 
-        """
+        # agregamos la tercer fila 
+        cTitulo.addLayout(fila3)
 
-        # abrimos la columna 
-        with ui.row():
+        # agregamos al contenedor
+        contenedor.addLayout(cTitulo)
 
-            # los títulos de las columnas
-            columnas = [{'name': 'id', 'label': 'Id', 'field': 'id','align':'center'},
-                        {'name': 'nombre', 'label': 'Nombre', 'field': 'nombre','align':'left'},
-                        {'name': 'identificacion', 'label': 'Id.Tributaria', 'field': 'identificacion','align':'center'},
-                        {'name': 'telefono', 'label': 'Teléfono', 'field': 'telefono','align':'right'},
-                        {'name': 'mail', 'label': 'E-Mail', 'field': 'mail','align':'left'},
-                        {'name': 'fecha', 'label': 'Fecha', 'field': 'fecha','align':'center'}]
-
-            # agregamos la tabla de clientes
-            self.tablaclientes = ui.table(columns=columnas, 
-                                          rows=[], 
-                                          title='Clientes Registrados',
-                                          row_key='id',
-                                          selection='single',
-                                          on_select=lambda e: self.cargaCliente(e.selection),
-                                          pagination={'rowsPerPage': 5}).props('virtual-scroll').classes('w-260')
-
-            # presentamos el menú 
-            with ui.column():
-                ui.input('Buscar...').bind_value(self.tablaclientes, 'filter').props('clearable').classes('w-40')
-                ui.button("Nuevo", icon='add', on_click=self.nuevoCliente).tooltip("Pulse para insertar un cliente").classes('w-40')
-                ui.button("Ayuda", icon='help', on_click=self.ayudaCliente).tooltip("Muestra la ayuda del sistema").classes('w-40')
-
-        # cargamos la nómina de clientes
-        self.nominaClientes()
-
-    def nominaClientes(self):
-        """
-        
-            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
-
-            Método llamado desde el constructor que carga en la grilla 
-            la nómina de clientes
-
-        """
-        # instanciamos la clase y obtenemos la nómina
-        clientes = Clientes()
-        nomina = clientes.nominaClientes()
-
-        # si no hay registros
-        if not nomina:
-            return
-        else:
-
-            # recorremos el vector
-            for registro in nomina:
-
-                # agregamos a la tabla 
-                self.tablaclientes.add_row({'id': registro["id"], 
-                                            'nombre': registro["nombre"],
-                                            'identificacion': registro["identificacion"],
-                                            'telefono': registro["telefono"],
-                                            'mail': registro["mail"],
-                                            'fecha' : registro["fecha"]})
-        
-    def nuevoCliente(self):
-        """
-        
-            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
-
-            Método que abre el diálogo con el formulario de carga
-            de nuevo cliente
-
-        """
-
-        # abrimos el diálogo
-        EditClientes(self)
-        
-    def cargaCliente(self, e):
-        """
-        
-            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
-
-            @param e el vector con los datos de la fila 
-
-            Método llamado al seleccionar una fila de la grilla 
-            que recibe como parámetro el vector con los datos 
-            de la misma
-
-        """
-
-        # obtenemos la clave del registro
-        id = int(e[0]["id"])
-
-        # abrimos el formulario 
-        formulario = EditClientes(self)
-
-        # cargamos el registro
-        formulario.getDatosCliente(id)
-
-    def ayudaCliente(self):
-        """
-        
-            @authhor Claudio Invernizzi <cinvernizzi@dsgestion.site>
-
-            Método que presenta la ventana de ayuda 
-
-        """

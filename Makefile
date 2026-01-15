@@ -32,4 +32,5 @@ clean:
 	rm -rf presupuestos/__pycache__
 	rm -rf secciones/__pycache__
 	rm -rf sql/__pycache__
-	
+	rm presupuesto.db
+	rm Presupuesto.spec

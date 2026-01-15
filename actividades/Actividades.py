@@ -49,10 +49,11 @@ class Actividades:
         self.Proyecto = 0             # clave del proyecto
         self.Seccion = 0              # clave de la sección 
         self.Descripcion = ""         # descripción de la actividad
-        self.Optimo = ""              # tiempo optimo de implementación
-        self.Estimado = ""            # tiempo promedio estimado
-        self.Pesimista = ""           # peor tiempo posible 
-        self.Costo = 0.00             # costo de la actividad
+        self.Optimo = 0.00            # tiempo optimo de implementación
+        self.Estimado = 0.00          # tiempo promedio estimado
+        self.Pesimista = 0.00         # peor tiempo posible 
+        self.Tiempo = 0.00            # tiempo calculado
+        self.Costo = 0                # costo de la actividad
         self.Consideraciones = ""     # anotaciones del usuario
 
     def __del__(self):
@@ -109,10 +110,11 @@ class Actividades:
                     "        estimado, "
                     "        optimo, "
                     "        pesimista, "
+                    "        tiempo, "
                     "        costo, "
                     "        consideraciones)"
                     "       VALUES "
-                    "       (?, ?, ?, ?, ?, ?, ?, ?);")
+                    "       (?, ?, ?, ?, ?, ?, ?, ?, ?);")
         
         # asignamos los parámetros
         parametros = (self.Proyecto,
@@ -121,6 +123,7 @@ class Actividades:
                       self.Estimado,
                       self.Optimo,
                       self.Pesimista,
+                      self.Tiempo, 
                       self.Costo,
                       self.Consideraciones)
         
@@ -166,6 +169,7 @@ class Actividades:
                     "       estimado = ?, "
                     "       optimo = ?, "
                     "       pesimista = ?, "
+                    "       tiempo = ?, "
                     "       costo = ?, "
                     "       consideraciones = ? "
                     "WHERE actividades.id = ?; ")
@@ -176,6 +180,7 @@ class Actividades:
                       self.Estimado, 
                       self.Optimo, 
                       self.Pesimista, 
+                      self.Tiempo,
                       self.Costo,
                       self.Consideraciones, 
                       self.Id)
@@ -217,6 +222,7 @@ class Actividades:
                     "       actividades.estimado AS estimado, "
                     "       actividades.optimo AS optimo, "
                     "       actividades.pesimista AS pesimista, "
+                    "       actividades.tiempo AS tiempo, "
                     "       actividades.costo AS costo, "
                     "       actividades.consideraciones AS consideraciones "
                     "FROM actividades "
@@ -234,6 +240,7 @@ class Actividades:
             self.Descripcion = resultado["descripcion"]
             self.Estimado = resultado["estimado"]
             self.Pesimista = resultado["pesimista"]
+            self.Tiempo = resultado["tiempo"]
             self.Costo = resultado["costo"]
             self.Consideraciones = resultado["consideraciones"]
 

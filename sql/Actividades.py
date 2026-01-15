@@ -92,6 +92,7 @@ class Actividades:
                     "       estimado REAL, " 
                     "       optimo REAL, " 
                     "       pesimista REAL, " 
+                    "       tiempo REAl, "
                     "       costo INTEGER NOT NULL, " 
                     "       consideraciones BLOB DEFAULT NULL, "
                     "FOREIGN KEY(proyecto) REFERENCES proyectos(id), "
