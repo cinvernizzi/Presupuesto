@@ -17,7 +17,7 @@ build:
 	# --clean para eliminar el cache antes de generar el ejecutable
 	# --onefile para empaquetar todo en un solo archivo
 	# --noupx no usa la compresión del binario (da problemas con pyside)
-	pyinstaller Presupuesto.py --clean --onefile --noupx
+	pyinstaller Presupuesto.py --add-data "recursos/*.png: recursos" --clean --onefile --noupx
 
 # este target limpia la basura del sistema
 clean:
@@ -32,5 +32,3 @@ clean:
 	rm -rf presupuestos/__pycache__
 	rm -rf secciones/__pycache__
 	rm -rf sql/__pycache__
-	rm presupuesto.db
-	rm Presupuesto.spec

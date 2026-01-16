@@ -14,10 +14,10 @@
 
 # importamos las librerías 
 from clases.fuentes import Fuentes
-from PySide6.QtWidgets import QDialog, QWidget, QHBoxLayout, QVBoxLayout, QLabel, QLineEdit, QPushButton
+from personal.EventosPersonal import EventosPersonal
+from PySide6.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from PySide6 import QtCore
 from PySide6 import QtGui
-from personal.Personal import Personal
 
 class FormPersonal(QDialog):
     """
@@ -43,6 +43,9 @@ class FormPersonal(QDialog):
 
         # instanciamos la fuente
         fuente = Fuentes()
+
+        # instanciamos los eventos 
+        self.Eventos = EventosPersonal(self)
 
         # instanciamos el formulario y lo fijamos como modal
         super(FormPersonal, self).__init__(parent)
@@ -71,35 +74,35 @@ class FormPersonal(QDialog):
         lId = QLabel("Id:")
         lId.setFont(fuente.normal)
         fila1.addWidget(lId)
-        tId = QLineEdit()
-        tId.setFont(fuente.normal)
-        tId.setToolTip("Clave del registro")
-        tId.setMaximumWidth(40)
-        tId.setMinimumHeight(30)
-        tId.setReadOnly(True)
-        fila1.addWidget(tId)
+        self.tId = QLineEdit()
+        self.tId.setFont(fuente.normal)
+        self.tId.setToolTip("Clave del registro")
+        self.tId.setMaximumWidth(40)
+        self.tId.setMinimumHeight(30)
+        self.tId.setReadOnly(True)
+        fila1.addWidget(self.tId)
 
         # presenta el nombre 
         lNombre = QLabel("Nombre:")
         lNombre.setFont(fuente.normal)
         fila1.addWidget(lNombre)
-        tNombre = QLineEdit()
-        tNombre.setFont(fuente.normal)
-        tNombre.setToolTip("Su nombre como aparecerá en el presupuesto")
-        tNombre.setMinimumWidth(200)
-        tNombre.setMinimumHeight(30)
-        fila1.addWidget(tNombre)
+        self.tNombre = QLineEdit()
+        self.tNombre.setFont(fuente.normal)
+        self.tNombre.setToolTip("Su nombre como aparecerá en el presupuesto")
+        self.tNombre.setMinimumWidth(200)
+        self.tNombre.setMinimumHeight(30)
+        fila1.addWidget(self.tNombre)
 
         # presenta la empresa
         lEmpresa = QLabel("Empresa:")
         lEmpresa.setFont(fuente.normal)
         fila1.addWidget(lEmpresa)
-        tEmpresa = QLineEdit()
-        tEmpresa.setFont(fuente.normal)
-        tEmpresa.setToolTip("La empresa como aparecerá en el presupuesto")
-        tEmpresa.setMinimumWidth(200)
-        tEmpresa.setMinimumHeight(30)
-        fila1.addWidget(tEmpresa)
+        self.tEmpresa = QLineEdit()
+        self.tEmpresa.setFont(fuente.normal)
+        self.tEmpresa.setToolTip("La empresa como aparecerá en el presupuesto")
+        self.tEmpresa.setMinimumWidth(200)
+        self.tEmpresa.setMinimumHeight(30)
+        fila1.addWidget(self.tEmpresa)
 
         # agregamos la fila 
         formulario.addLayout(fila1)
@@ -111,23 +114,23 @@ class FormPersonal(QDialog):
         lDireccion = QLabel("Direccion:")
         lDireccion.setFont(fuente.normal)
         fila2.addWidget(lDireccion)
-        tDireccion = QLineEdit()
-        tDireccion.setFont(fuente.normal)
-        tDireccion.setToolTip("El domicilio como aparecerá en el presupuesto")
-        tDireccion.setMinimumWidth(200)
-        tDireccion.setMinimumHeight(30)
-        fila2.addWidget(tDireccion)
+        self.tDireccion = QLineEdit()
+        self.tDireccion.setFont(fuente.normal)
+        self.tDireccion.setToolTip("El domicilio como aparecerá en el presupuesto")
+        self.tDireccion.setMinimumWidth(200)
+        self.tDireccion.setMinimumHeight(30)
+        fila2.addWidget(self.tDireccion)
 
         # presenta el cuil 
         lCuil = QLabel("Id Tributaria:")
         lCuil.setFont(fuente.normal)
         fila2.addWidget(lCuil)
-        tCuil = QLineEdit()
-        tCuil.setFont(fuente.normal)
-        tCuil.setToolTip("Su identificación tributaria")
-        tCuil.setMinimumWidth(120)
-        tCuil.setMinimumHeight(30)
-        fila2.addWidget(tCuil)
+        self.tCuil = QLineEdit()
+        self.tCuil.setFont(fuente.normal)
+        self.tCuil.setToolTip("Su identificación tributaria")
+        self.tCuil.setMinimumWidth(120)
+        self.tCuil.setMinimumHeight(30)
+        fila2.addWidget(self.tCuil)
 
         # agregamos la segunda fila 
         formulario.addLayout(fila2)
@@ -139,22 +142,22 @@ class FormPersonal(QDialog):
         lTelefono = QLabel("Teléfono:")
         lTelefono.setFont(fuente.normal)
         fila3.addWidget(lTelefono)
-        tTelefono = QLineEdit()
-        tTelefono.setFont(fuente.normal)
-        tTelefono.setToolTip("Teléfono del cliente")
-        tTelefono.setMaximumWidth(150)
-        tTelefono.setMinimumHeight(30)
-        fila3.addWidget(tTelefono)
+        self.tTelefono = QLineEdit()
+        self.tTelefono.setFont(fuente.normal)
+        self.tTelefono.setToolTip("Teléfono del cliente")
+        self.tTelefono.setMaximumWidth(150)
+        self.tTelefono.setMinimumHeight(30)
+        fila3.addWidget(self.tTelefono)
 
         # presenta el mail 
         lMail = QLabel("E-Mail:")
         lMail.setFont(fuente.normal)
         fila3.addWidget(lMail)
-        tMail = QLineEdit()
-        tMail.setFont(fuente.normal)
-        tMail.setToolTip("Dirección de correo electrónico")
-        tMail.setMinimumHeight(30)
-        fila3.addWidget(tMail)
+        self.tMail = QLineEdit()
+        self.tMail.setFont(fuente.normal)
+        self.tMail.setToolTip("Dirección de correo electrónico")
+        self.tMail.setMinimumHeight(30)
+        fila3.addWidget(self.tMail)
 
         # agrega la segunda fila 
         formulario.addLayout(fila3)
@@ -169,33 +172,39 @@ class FormPersonal(QDialog):
         lAlta = QLabel("Alta:")
         lAlta.setFont(fuente.normal)
         fila4.addWidget(lAlta)
-        tAlta = QLineEdit()
-        tAlta.setFont(fuente.normal)
-        tAlta.setToolTip("Fecha de alta del registro")
-        tAlta.setMaximumWidth(90)
-        tAlta.setMinimumHeight(30)
-        tAlta.setReadOnly(True)
-        fila4.addWidget(tAlta)
+        self.tAlta = QLineEdit()
+        self.tAlta.setFont(fuente.normal)
+        self.tAlta.setToolTip("Fecha de alta del registro")
+        self.tAlta.setMaximumWidth(90)
+        self.tAlta.setMinimumHeight(30)
+        self.tAlta.setReadOnly(True)
+        fila4.addWidget(self.tAlta)
 
         # presenta el botón grabar
-        btnGrabar = QPushButton("Grabar")
-        btnGrabar.setFixedHeight(30)
-        btnGrabar.setFixedWidth(120)
+        self.btnGrabar = QPushButton("Grabar")
+        self.btnGrabar.setFixedHeight(30)
+        self.btnGrabar.setFixedWidth(120)
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("recursos/grabar.png"))
-        btnGrabar.setIcon(icon1)
-        btnGrabar.setToolTip("Graba el registro en la base")
-        fila4.addWidget(btnGrabar)
+        self.btnGrabar.setIcon(icon1)
+        self.btnGrabar.setToolTip("Graba el registro en la base")
+        fila4.addWidget(self.btnGrabar)
+
+        # asignamos el evento
+        self.btnGrabar.clicked.connect(self.Eventos.verificaPersonal)
 
         # presenta el botón cancelar 
-        btnCancelar = QPushButton("Cancelar")
-        btnCancelar.setFixedWidth(120)
-        btnCancelar.setFixedHeight(30)
+        self.btnCancelar = QPushButton("Cancelar")
+        self.btnCancelar.setFixedWidth(120)
+        self.btnCancelar.setFixedHeight(30)
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("recursos/cancelar.png"))
-        btnCancelar.setIcon(icon2)
-        btnCancelar.setToolTip("Reinicia el formulario")
-        fila4.addWidget(btnCancelar)
+        self.btnCancelar.setIcon(icon2)
+        self.btnCancelar.setToolTip("Cierra el formulario")
+        fila4.addWidget(self.btnCancelar)
+
+        # asignamos el evento
+        self.btnCancelar.clicked.connect(self.Eventos.cancelaPersonal)
 
         # agregamos la tercer fila 
         formulario.addLayout(fila4)
@@ -205,4 +214,7 @@ class FormPersonal(QDialog):
 
         # mostramos el formulario 
         self.show()
+
+        # cargamos el registro 
+        self.Eventos.cargaPersonal()
         

@@ -14,8 +14,9 @@
 """
 
 # importamos las librerías
-from PySide6 import QtCore, QtGui, QtWidgets
-from threading import Timer
+from PySide6 import QtCore, QtWidgets
+from PySide6.QtCore import QTimer
+from clases.fuentes import Fuentes
 
 
 class Mensaje(QtWidgets.QDialog):
@@ -42,10 +43,6 @@ class Mensaje(QtWidgets.QDialog):
 
         # llama al constructor del padre
         super(Mensaje, self).__init__(parent)
-
-        # instanciamos el temporizador y lo iniciamos
-        t = Timer(5, self.Cerrar)        
-        t.start()
         
         # configuramos la interfaz
         self.setupUi(mensaje)
@@ -64,34 +61,20 @@ class Mensaje(QtWidgets.QDialog):
         """
 
         # establecemos la fuente        
-        fuente = QtGui.QFont()
-        fuente.setFamily("Arial")
-        fuente.setPointSize(8)
-        fuente.setBold(False)
-        fuente.setWeight(50)        
+        fuente = Fuentes()
         
         # fijamos las propiedades
         self.setGeometry(1000, 50, 260, 50)        
         self.setWindowFlags(self.windowFlags() | QtCore.Qt.FramelessWindowHint)
+        layout = QtWidgets.QVBoxLayout()
         lMensaje = QtWidgets.QLabel(mensaje, self)
-        lMensaje.setGeometry(QtCore.QRect(0, 0, 251, 50))
-        lMensaje.setFont(fuente)
+        lMensaje.setFont(fuente.normal)
         lMensaje.setAlignment(QtCore.Qt.AlignCenter)
+        layout.addWidget(lMensaje)
+        self.setLayout(layout)
 
-        # mostramos el formulario
-        self.setModal(False)
+        # mostramos 
         self.show()
-        
-    def Cerrar(self):
-        """
-            
-            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
-            
-            Método llamado por el temporizador que simplemente 
-            cierra el diálogo 
- 
-        """
 
-        # cerramos el diálogo
-        self.close()
-        
+        # cerramos luego de cinco seguntos
+        QTimer.singleShot(3000, self.close)        
