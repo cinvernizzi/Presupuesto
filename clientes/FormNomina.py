@@ -19,6 +19,7 @@
 from clases.fuentes import Fuentes
 from PySide6 import QtGui
 from PySide6 import QtCore
+from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QLabel, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QTableWidget
 
 
@@ -31,7 +32,7 @@ class NominaClientes:
 
     """
 
-    def __init__(self, contenedor):
+    def __init__(self, contenedor, padre):
         """
         
         :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
@@ -45,6 +46,8 @@ class NominaClientes:
 
         # instanciamos la fuente
         fuente = Fuentes()
+
+        self.Padre = padre
 
         # agregamos el título
         layoutTitulo = QVBoxLayout()
@@ -64,24 +67,25 @@ class NominaClientes:
         layoutFiltro.addWidget(tFiltro)
 
         # agregamos el botón nuevo cliente
-        btnNuevo = QPushButton()
-        btnNuevo.setFixedHeight(30)
-        btnNuevo.setFixedWidth(30)
+        self.btnNuevo = QPushButton()
+        self.btnNuevo.setFixedHeight(30)
+        self.btnNuevo.setFixedWidth(30)
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("recursos/nuevo.png"))
-        btnNuevo.setIcon(icon1)
-        btnNuevo.setToolTip("Agrega un nuevo cliente")
-        layoutFiltro.addWidget(btnNuevo)
+        self.btnNuevo.setIcon(icon1)
+        self.btnNuevo.setToolTip("Agrega un nuevo cliente")
+        layoutFiltro.addWidget(self.btnNuevo)
 
         # agregamos el botón configurar
-        btnConfigurar = QPushButton()
-        btnConfigurar.setFixedWidth(30)
-        btnConfigurar.setFixedHeight(30)
+        self.btnConfigurar = QPushButton()
+        self.btnConfigurar.setFixedWidth(30)
+        self.btnConfigurar.setFixedHeight(30)
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("recursos/apoyo.png"))
-        btnConfigurar.setIcon(icon2)
-        btnConfigurar.setToolTip("Configura la aplicación")
-        layoutFiltro.addWidget(btnConfigurar)
+        self.btnConfigurar.setIcon(icon2)
+        self.btnConfigurar.setToolTip("Configura la aplicación")
+        self.btnConfigurar.setEnabled(True)
+        layoutFiltro.addWidget(self.btnConfigurar)
 
         # la tabla de clientes
         tClientes = QTableWidget()
@@ -108,4 +112,3 @@ class NominaClientes:
         layoutTitulo.addLayout(layoutFiltro)
         layoutTitulo.addWidget(tClientes)
         contenedor.addLayout(layoutTitulo)
-

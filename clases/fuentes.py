@@ -5,7 +5,7 @@
     Nombre: ingreso.py
     Autor: Lic. Claudio Invernizzi
     Fecha: 15/03/2020
-    E-Mail: cinvernizzi@gmail.com
+    E-Mail: cinvernizzi@dsgestion.site
     Licencia: GPL
     Proyecto: Diagnóstico
     Comentarios: Procedimiento que define las fuentes del sistema
@@ -19,7 +19,7 @@ from PySide6 import QtGui
 class Fuentes:
     """
 
-        @author Claudio Invernizzi <cinvernizzi@gmail.com>
+        @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
         Definición de la clase 
 
@@ -28,7 +28,7 @@ class Fuentes:
     def __init__(self):
         """
 
-           @author Claudio Invernizzi <cinvernizzi@gmail.com>
+           @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
            Constructor de la clase
 

@@ -16,9 +16,11 @@
 import os
 import sys
 from sql.Verifica import Verifica
+from personal.FormPersonal import FormPersonal
 from clientes.FormNomina import NominaClientes
 from clientes.FormClientes import FormClientes
 from proyectos.NominaProyectos import NominaProyectos
+from personal.FormPersonal import FormPersonal
 from clases.fuentes import Fuentes
 from PySide6.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QLabel
 from PySide6 import QtCore
@@ -32,7 +34,24 @@ if not os.path.exists("temp"):
 Verifica()
 
 class Inicio(QWidget):
+    """
+    
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+        Definición de la clase
+
+    """
+
     def __init__(self):
+        """
+        
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+        Constructor de la clase, instanciamos el formulario principal
+
+        """
+
+        # inicializamos 
         super().__init__()
 
         # implementamos la fuente
@@ -58,7 +77,7 @@ class Inicio(QWidget):
 
         # definimos el segundo layout
         datos = QHBoxLayout()
-        NominaClientes(datos)
+        nominaclientes = NominaClientes(datos, self)
         
         # ahora definimos otro contenedor al cual 
         # agregamos el formulario de clientes y 
@@ -79,9 +98,33 @@ class Inicio(QWidget):
         lPie.setAlignment(QtCore.Qt.AlignCenter)
         contenedor.addWidget(lPie)
 
+        """
+        
+            Atención, aparentemente al utilizar layout manager anidados
+            PySide6 tiene algún tipo de inconveniente al propagar los 
+            eventos y nunca se captura el click del mouse o el evento del 
+            teclado, por eso declaramos aquí (no es una solución 
+            elegante y no me gusta mucho tampoco)
+        """
+        nominaclientes.btnConfigurar.clicked.connect(self.verConfig)
+
         # fijamos el layout
         self.setLayout(contenedor)  
         self.show() 
+
+    def verConfig(self):
+        """
+                
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+        Método llamado al pulsar sobre el botón configurar que 
+        abre el formulario de datos personales
+
+        """
+
+        # instanciamos el formulario 
+        FormPersonal(self)
+        
 
 # lanzamos la aplicación
 app = QApplication([])

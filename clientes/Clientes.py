@@ -81,6 +81,7 @@ class Clientes:
         else:
             resultado = self.editaCliente()
 
+        # retornamos la clave
         return resultado
     
     def nuevoCliente(self) -> int: 

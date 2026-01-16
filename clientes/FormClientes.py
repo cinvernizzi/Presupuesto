@@ -176,4 +176,3 @@ class FormClientes:
 
         # agregamos al contenedor
         contenedor.addLayout(cTitulo)
-

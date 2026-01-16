@@ -5,7 +5,7 @@
     Nombre: mensaje.py
     Autor: Lic. Claudio Invernizzi
     Fecha: 30/06/2020
-    E-Mail: cinvernizzi@gmail.com
+    E-Mail: cinvernizzi@dsgestion.site
     Licencia: GPL
     Proyecto: Diagnóstico
     Comentarios: Clase que presenta un mensaje emergente y luego se 
@@ -21,7 +21,7 @@ from threading import Timer
 class Mensaje(QtWidgets.QDialog):
     """
 
-        @author Claudio Invernizzi <cinvernizzi@gmail.com>
+        @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
         Definición de la clase
 
@@ -30,7 +30,7 @@ class Mensaje(QtWidgets.QDialog):
     def __init__(self, parent, mensaje: str):
         """
         
-           @author Claudio Invernizzi <cinvernizzi@gmail.com>
+           @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
            @param parent el formulario padre
            @param mensaje cadena con el mensaje a presentar
@@ -53,7 +53,7 @@ class Mensaje(QtWidgets.QDialog):
     def setupUi(self, mensaje: str):
         """
 
-            @author Claudio Invernizzi <cinvernizzi@gmail.com>
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
 
             @param mensaje cadena con el mensaje a presentar
 
@@ -85,7 +85,7 @@ class Mensaje(QtWidgets.QDialog):
     def Cerrar(self):
         """
             
-            @author Claudio Invernizzi <cinvernizzi@gmail.com>
+            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
             
             Método llamado por el temporizador que simplemente 
             cierra el diálogo 
