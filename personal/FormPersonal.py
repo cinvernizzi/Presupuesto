@@ -18,6 +18,8 @@ from personal.EventosPersonal import EventosPersonal
 from PySide6.QtWidgets import QDialog, QHBoxLayout, QVBoxLayout, QLabel, QLineEdit, QPushButton
 from PySide6 import QtCore
 from PySide6 import QtGui
+from pathlib import Path
+
 
 class FormPersonal(QDialog):
     """
@@ -168,6 +170,27 @@ class FormPersonal(QDialog):
         # agregamos un espaciador
         fila4.addStretch()
 
+        # verificamos si existe el logo
+        file_path = "temp/logo.png"
+        if Path(file_path).is_file():
+            icon3 = QtGui.QIcon()
+            icon3.addPixmap(QtGui.QPixmap("temp/logo.png"))            
+        else:
+            icon3 = QtGui.QIcon()
+            icon3.addPixmap(QtGui.QPixmap("recursos/imagen_no_disponible.gif"))
+
+        # presenta el logo 
+        self.btnLogo = QPushButton()
+        self.btnLogo.setFixedHeight(60)
+        self.btnLogo.setFixedWidth(60)
+        self.btnLogo.setIcon(icon3)
+        self.btnLogo.setIconSize(QtCore.QSize(60,60))
+        self.btnLogo.setToolTip("Pulse para actualizar su logo")
+        fila4.addWidget(self.btnLogo)
+
+        # asignamos el evento
+        self.btnLogo.clicked.connect(self.Eventos.seleccionarLogo)
+
         # presenta la fecha 
         lAlta = QLabel("Alta:")
         lAlta.setFont(fuente.normal)
@@ -179,6 +202,16 @@ class FormPersonal(QDialog):
         self.tAlta.setMinimumHeight(30)
         self.tAlta.setReadOnly(True)
         fila4.addWidget(self.tAlta)
+
+        # presenta el botón secciones
+        self.btnSecciones = QPushButton("Secciones")
+        self.btnSecciones.setFixedHeight(30)
+        self.btnSecciones.setFixedWidth(120)
+        self.btnSecciones.setToolTip("Edita las secciones de un presupuesto")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("recursos/secciones.png"))
+        self.btnSecciones.setIcon(icon4)
+        fila4.addWidget(self.btnSecciones)
 
         # presenta el botón grabar
         self.btnGrabar = QPushButton("Grabar")

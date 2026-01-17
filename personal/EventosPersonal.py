@@ -16,6 +16,10 @@
 from clases.mensaje import Mensaje
 from personal.Personal import Personal
 from datetime import datetime
+from PySide6.QtWidgets import QFileDialog
+from PySide6 import QtGui
+import shutil
+
 
 class EventosPersonal():
     """
@@ -119,10 +123,10 @@ class EventosPersonal():
         id = self.Personal.grabaPersonal()
 
         # si pudo grabar
-        if id != 0:
+        if int(id) != 0:
 
             # si estaba insertando actualiza la fecha
-            if not self.FormPersonal.tId.text():
+            if not self.FormPersonal.tAlta.text():
                 ahora = datetime.now()
                 self.FormPersonal.tAlta.setText(ahora.strftime("%d/%m/%Y"))
 
@@ -146,3 +150,45 @@ class EventosPersonal():
 
         """
 
+        # obtenemos el registro
+        self.Personal.getDatosPersonal()
+
+        # si hay un registro activo
+        if int(self.Personal.Id) != 0:
+
+            # asignamos en el formulario
+            self.FormPersonal.tId.setText(str(self.Personal.Id))
+            self.FormPersonal.tNombre.setText(self.Personal.Nombre)
+            self.FormPersonal.tEmpresa.setText(self.Personal.Empresa)
+            self.FormPersonal.tDireccion.setText(self.Personal.Direccion)
+            self.FormPersonal.tCuil.setText(self.Personal.Cuil)
+            self.FormPersonal.tTelefono.setText(self.Personal.Telefono)
+            self.FormPersonal.tMail.setText(self.Personal.Mail)
+            self.FormPersonal.tAlta.setText(self.Personal.Fecha)
+        
+    def seleccionarLogo(self):
+        """
+        
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+        
+        Método llamado al pulsar el botón del logo que pide el 
+        archivo 
+
+        """
+
+        # abrimos el diálogo
+        archivo, _ = QFileDialog.getOpenFileName(None, 
+                                                 "Seleccionar archivo del logo", 
+                                                 "", 
+                                                 "Archivos de Image (*.png)")
+        
+        # si seleccionó un archivo
+        if archivo:
+
+            # copiamos el archivo
+            shutil.copy (archivo, "temp/logo.png")
+
+            # ahora asignamos en el botón 
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap("temp/logo.png"))            
+            self.FormPersonal.btnLogo.setIcon(icon)

@@ -47,7 +47,8 @@ class Personal:
         self.Direccion = ""             # dirección postal
         self.Cuil = ""                  # identificación tributaria
         self.Telefono = ""              # número telefónico
-        self.Mail = ""                  # fecha de alta
+        self.Mail = ""                  # mail del usuario
+        self.Fecha = ""                 # fecha de alta 
 
     def __del__(self):
         """
@@ -222,7 +223,7 @@ class Personal:
             self.Cursor.execute(Consulta)
 
             # verificamos si hay registros
-            if self.Cursor.rowcount > 0:
+            if self.Cursor.rowcount != 0:
 
                 # asignamos en la clase
                 resultado = self.Cursor.fetchone()
