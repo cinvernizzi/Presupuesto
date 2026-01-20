@@ -16,7 +16,6 @@
 import os
 import sys
 from sql.Verifica import Verifica
-from personal.FormPersonal import FormPersonal
 from clientes.FormNomina import NominaClientes
 from clientes.FormClientes import FormClientes
 from proyectos.NominaProyectos import NominaProyectos
@@ -77,13 +76,13 @@ class Inicio(QWidget):
 
         # definimos el segundo layout
         datos = QHBoxLayout()
-        nominaclientes = NominaClientes(datos, self)
+        self.nominaclientes = NominaClientes(datos, self)
         
         # ahora definimos otro contenedor al cual 
         # agregamos el formulario de clientes y 
         # la nómina de proyectos
         contenedor2 = QVBoxLayout()
-        FormClientes(contenedor2)
+        self.FormularioClientes = FormClientes(contenedor2)
         NominaProyectos(contenedor2)
 
         # agregamos el layout 2
@@ -106,7 +105,12 @@ class Inicio(QWidget):
             teclado, por eso declaramos aquí (no es una solución 
             elegante y no me gusta mucho tampoco)
         """
-        nominaclientes.btnConfigurar.clicked.connect(self.verConfig)
+        self.nominaclientes.btnConfigurar.clicked.connect(self.verConfig)
+        self.nominaclientes.btnNuevo.clicked.connect(self.FormularioClientes.nuevoCliente)
+        self.nominaclientes.tClientes.cellClicked.connect(self.getClaveCliente)
+        self.nominaclientes.tFiltro.textChanged.connect(self.nominaclientes.filtraCliente)
+        self.FormularioClientes.btnGrabar.clicked.connect(self.FormularioClientes.grabaCliente)
+        self.FormularioClientes.btnCancelar.clicked.connect(self.FormularioClientes.cancelaCliente)
 
         # fijamos el layout
         self.setLayout(contenedor)  
@@ -124,7 +128,27 @@ class Inicio(QWidget):
 
         # instanciamos el formulario 
         FormPersonal(self)
+
+    def getClaveCliente(self, fila, columna):
+        """
         
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+        
+        :param fila: entero con la clave de la fila 
+        :param columna: entero con la clave de la columna 
+
+        Método llamado al pulsar sobre la grilla de clientes que 
+        recibe como parámetro la fila y la columna pulsadas, a 
+        partir de allí, obtiene la clave del cliente y carga 
+        el registro
+
+        """
+
+        # obtenemos la clave
+        clave = self.nominaclientes.tClientes.item(fila, 0).text()
+
+        # llamamos el evento
+        self.FormularioClientes.verCliente(clave)
 
 # lanzamos la aplicación
 app = QApplication([])

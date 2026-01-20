@@ -17,9 +17,9 @@
 
 # importamos las librerías
 from clases.fuentes import Fuentes
+from clientes.EventosNomina import EventosNomina
 from PySide6 import QtGui
 from PySide6 import QtCore
-from PySide6.QtCore import Slot
 from PySide6.QtWidgets import QLabel, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QTableWidget
 
 
@@ -47,6 +47,7 @@ class NominaClientes:
         # instanciamos la fuente
         fuente = Fuentes()
 
+        # fijamos el padre
         self.Padre = padre
 
         # agregamos el título
@@ -60,11 +61,11 @@ class NominaClientes:
         layoutFiltro = QHBoxLayout()
 
         # agregamos el filtro 
-        tFiltro = QLineEdit()
-        tFiltro.setFixedWidth(150)
-        tFiltro.setFixedHeight(30)
-        tFiltro.setFont(fuente.normal)
-        layoutFiltro.addWidget(tFiltro)
+        self.tFiltro = QLineEdit()
+        self.tFiltro.setFixedWidth(150)
+        self.tFiltro.setFixedHeight(30)
+        self.tFiltro.setFont(fuente.normal)
+        layoutFiltro.addWidget(self.tFiltro)
 
         # agregamos el botón nuevo cliente
         self.btnNuevo = QPushButton()
@@ -88,27 +89,52 @@ class NominaClientes:
         layoutFiltro.addWidget(self.btnConfigurar)
 
         # la tabla de clientes
-        tClientes = QTableWidget()
-        tClientes.setColumnCount(2)
-        tClientes.setFixedWidth(220)
-        tClientes.setRowCount(0)
-        tClientes.setFont(fuente.normal)
+        self.tClientes = QTableWidget()
+        self.tClientes.setColumnCount(2)
+        self.tClientes.setFixedWidth(220)
+        self.tClientes.setRowCount(0)
+        self.tClientes.setFont(fuente.normal)
 
         # fija los títulos de las columnas
-        tClientes.setHorizontalHeaderLabels(('Id',
-                                             'Nombre'))
+        self.tClientes.setHorizontalHeaderLabels(('Id',
+                                                  'Nombre'))
 
         # fijamos la alineación de las columnas
-        tClientes.horizontalHeaderItem(0).setTextAlignment(QtCore.Qt.AlignCenter)
-        tClientes.horizontalHeaderItem(1).setTextAlignment(QtCore.Qt.AlignLeft)
+        self.tClientes.horizontalHeaderItem(0).setTextAlignment(QtCore.Qt.AlignCenter)
+        self.tClientes.horizontalHeaderItem(1).setTextAlignment(QtCore.Qt.AlignLeft)
 
         # fijmos el tamaño de las columnas
-        tClientes.setColumnWidth(0, 25)
+        self.tClientes.setColumnWidth(0, 0)
+        self.tClientes.setColumnWidth(1, 210)
+
+        # fijamos la fuente
+        self.tClientes.setFont(fuente.chica)
+
+        self.tClientes.verticalHeader().hide()
 
         # permitimos reordenar
-        tClientes.setSortingEnabled(True)
+        self.tClientes.setSortingEnabled(True)
+
+        # instanciamos la clase de eventos
+        self.Eventos = EventosNomina(self.tClientes)
+
+        # cargamos todos los clientes por defecto
+        self.Eventos.filtraClientes()
 
         # agregamos los elementos al contenedor
         layoutTitulo.addLayout(layoutFiltro)
-        layoutTitulo.addWidget(tClientes)
+        layoutTitulo.addWidget(self.tClientes)
         contenedor.addLayout(layoutTitulo)
+
+    def filtraCliente(self):
+        """
+        
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+        
+        Método llamado al cambiar el texto del filtro, obtiene el 
+        texto ingresado y se lo pasa al filtro
+
+        """
+
+        # filtramos 
+        self.Eventos.filtraClientes(self.tFiltro.text())

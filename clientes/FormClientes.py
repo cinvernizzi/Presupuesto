@@ -17,6 +17,7 @@
 
 # importamos las librerías
 from clases.fuentes import Fuentes
+from clientes.EventosClientes import EventosClientes
 from PySide6 import QtGui
 from PySide6 import QtCore
 from PySide6.QtWidgets import QLabel, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton
@@ -42,6 +43,9 @@ class FormClientes:
 
         """
 
+        # instanciamos la clase de eventos
+        self.Eventos = EventosClientes(self)
+
         # instanciamos la fuente
         fuente = Fuentes()
 
@@ -60,35 +64,35 @@ class FormClientes:
         lId = QLabel("Id:")
         lId.setFont(fuente.normal)
         fila1.addWidget(lId)
-        tId = QLineEdit()
-        tId.setFont(fuente.normal)
-        tId.setToolTip("Clave del Registro")
-        tId.setMaximumWidth(40)
-        tId.setMinimumHeight(30)
-        tId.setReadOnly(True)
-        fila1.addWidget(tId)
+        self.tId = QLineEdit()
+        self.tId.setFont(fuente.normal)
+        self.tId.setToolTip("Clave del Registro")
+        self.tId.setMaximumWidth(40)
+        self.tId.setMinimumHeight(30)
+        self.tId.setReadOnly(True)
+        fila1.addWidget(self.tId)
 
         # agregamos el nombre
         lNombre = QLabel("Nombre:")
         lNombre.setFont(fuente.normal)
         fila1.addWidget(lNombre)
-        tNombre = QLineEdit()
-        tNombre.setFont(fuente.normal)
-        tNombre.setToolTip("Nombre completo del cliente")
-        tNombre.setMinimumWidth(200)
-        tNombre.setMinimumHeight(30)
-        fila1.addWidget(tNombre)
+        self.tNombre = QLineEdit()
+        self.tNombre.setFont(fuente.normal)
+        self.tNombre.setToolTip("Nombre completo del cliente")
+        self.tNombre.setMinimumWidth(200)
+        self.tNombre.setMinimumHeight(30)
+        fila1.addWidget(self.tNombre)
 
         # agregamos la dirección 
         lDireccion = QLabel("Domicilio:")
         lDireccion.setFont(fuente.normal)
         fila1.addWidget(lDireccion)
-        tDireccion = QLineEdit()
-        tDireccion.setFont(fuente.normal)
-        tDireccion.setToolTip("Dirección postal del cliente")
-        tDireccion.setMinimumWidth(200)
-        tDireccion.setMinimumHeight(30)
-        fila1.addWidget(tDireccion)
+        self.tDireccion = QLineEdit()
+        self.tDireccion.setFont(fuente.normal)
+        self.tDireccion.setToolTip("Dirección postal del cliente")
+        self.tDireccion.setMinimumWidth(200)
+        self.tDireccion.setMinimumHeight(30)
+        fila1.addWidget(self.tDireccion)
 
         # agregamos la primer fila 
         cTitulo.addLayout(fila1)
@@ -101,45 +105,45 @@ class FormClientes:
         lTributaria = QLabel("Id Tributaria:")
         lTributaria.setFont(fuente.normal)
         fila2.addWidget(lTributaria)
-        tTributaria = QLineEdit()
-        tTributaria.setFont(fuente.normal)
-        tTributaria.setToolTip("Clave tributaria del cliente")
-        tTributaria.setMaximumWidth(120)
-        tTributaria.setMinimumHeight(30)
-        fila2.addWidget(tTributaria)
+        self.tTributaria = QLineEdit()
+        self.tTributaria.setFont(fuente.normal)
+        self.tTributaria.setToolTip("Clave tributaria del cliente")
+        self.tTributaria.setMaximumWidth(120)
+        self.tTributaria.setMinimumHeight(30)
+        fila2.addWidget(self.tTributaria)
 
         # agregamos el teléfono 
         lTelefono = QLabel("Teléfono:")
         lTelefono.setFont(fuente.normal)
         fila2.addWidget(lTelefono)
-        tTelefono = QLineEdit()
-        tTelefono.setFont(fuente.normal)
-        tTelefono.setToolTip("Teléfono del cliente")
-        tTelefono.setMaximumWidth(150)
-        tTelefono.setMinimumHeight(30)
-        fila2.addWidget(tTelefono)
+        self.tTelefono = QLineEdit()
+        self.tTelefono.setFont(fuente.normal)
+        self.tTelefono.setToolTip("Teléfono del cliente")
+        self.tTelefono.setMaximumWidth(150)
+        self.tTelefono.setMinimumHeight(30)
+        fila2.addWidget(self.tTelefono)
 
         # agregamos el mail 
         lMail = QLabel("E-Mail:")
         lMail.setFont(fuente.normal)
         fila2.addWidget(lMail)
-        tMail = QLineEdit()
-        tMail.setFont(fuente.normal)
-        tMail.setToolTip("Dirección de correo electrónico")
-        tMail.setMinimumHeight(30)
-        fila2.addWidget(tMail)
+        self.tMail = QLineEdit()
+        self.tMail.setFont(fuente.normal)
+        self.tMail.setToolTip("Dirección de correo electrónico")
+        self.tMail.setMinimumHeight(30)
+        fila2.addWidget(self.tMail)
 
         # agregamos la fecha de alta
         lAlta = QLabel("Alta:")
         lAlta.setFont(fuente.normal)
         fila2.addWidget(lAlta)
-        tAlta = QLineEdit()
-        tAlta.setFont(fuente.normal)
-        tAlta.setToolTip("Fecha de alta del registro")
-        tAlta.setMaximumWidth(90)
-        tAlta.setMinimumHeight(30)
-        tAlta.setReadOnly(True)
-        fila2.addWidget(tAlta)
+        self.tAlta = QLineEdit()
+        self.tAlta.setFont(fuente.normal)
+        self.tAlta.setToolTip("Fecha de alta del registro")
+        self.tAlta.setMaximumWidth(90)
+        self.tAlta.setMinimumHeight(30)
+        self.tAlta.setReadOnly(True)
+        fila2.addWidget(self.tAlta)
 
         # agregamos la segunda fila 
         cTitulo.addLayout(fila2)
@@ -152,27 +156,81 @@ class FormClientes:
         fila3.addStretch()
         
         # agregamos el botón grabar
-        btnGrabar = QPushButton("Grabar")
-        btnGrabar.setFixedHeight(30)
-        btnGrabar.setFixedWidth(120)
+        self.btnGrabar = QPushButton("Grabar")
+        self.btnGrabar.setFixedHeight(30)
+        self.btnGrabar.setFixedWidth(120)
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("recursos/grabar.png"))
-        btnGrabar.setIcon(icon1)
-        btnGrabar.setToolTip("Graba el registro en la base")
-        fila3.addWidget(btnGrabar)
+        self.btnGrabar.setIcon(icon1)
+        self.btnGrabar.setToolTip("Graba el registro en la base")
+        fila3.addWidget(self.btnGrabar)
 
         # agregamos el botón cancelar
-        btnCancelar = QPushButton("Cancelar")
-        btnCancelar.setFixedWidth(120)
-        btnCancelar.setFixedHeight(30)
+        self.btnCancelar = QPushButton("Cancelar")
+        self.btnCancelar.setFixedWidth(120)
+        self.btnCancelar.setFixedHeight(30)
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("recursos/cancelar.png"))
-        btnCancelar.setIcon(icon2)
-        btnCancelar.setToolTip("Reinicia el formulario")
-        fila3.addWidget(btnCancelar)
+        self.btnCancelar.setIcon(icon2)
+        self.btnCancelar.setToolTip("Reinicia el formulario")
+        fila3.addWidget(self.btnCancelar)
 
         # agregamos la tercer fila 
         cTitulo.addLayout(fila3)
 
         # agregamos al contenedor
         contenedor.addLayout(cTitulo)
+
+    def nuevoCliente(self):
+        """
+
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+        Método llamado al pulsar el botón nuevo cliente que 
+        desencadena la limpieza del formulario 
+
+        """
+
+        # llamamos al método de la clase
+        self.Eventos.nuevoCliente()
+
+    def grabaCliente(self):
+        """
+        
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+        Método llamado al pulsar el botón grabar que verifica 
+        los datos del formulario 
+
+        """
+
+        # llamamos al método de la clase
+        self.Eventos.verificaCliente()
+
+    def cancelaCliente(self):
+        """
+        
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+        Método llamado al pulsar el botón cancelar que recarga el 
+        registro o limpia el formulario según corresponda
+
+        """
+
+        # llamamos al método
+        self.Eventos.cancelaCliente()
+    
+    def verCliente(self, idcliente):
+        """
+
+        :author: Claudio Invernizzi <cinvernizzi@dsgestion.site>
+
+        :param idcliente: clave del registro
+
+        Método que recibe como parámetro la clave de un cliente y llama
+        al evento para mostrarlo en pantalla 
+        
+        """
+
+        # llamamos el evento
+        self.Eventos.getDatosCliente(idcliente)

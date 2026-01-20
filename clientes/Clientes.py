@@ -310,11 +310,11 @@ class Clientes:
                     "       clientes.telefono AS telefono, "
                     "       clientes.mail AS mail "
                     "FROM clientes "
-                    "WHERE clientes.nombre LIKE '%?%' "
+                    "WHERE clientes.nombre LIKE ? "
                     "ORDER BY clientes.nombre; ")
         
         # asignamos los parámetros
-        parametros = (texto, )
+        parametros = ("%" + texto + "%", )
 
         # capturamos el error
         try: 

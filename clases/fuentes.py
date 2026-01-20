@@ -45,3 +45,9 @@ class Fuentes:
         self.normal.setFamily("Arial")
         self.normal.setPointSize(11)
         self.normal.setBold(False)
+
+        # definimos la fuente pequeña
+        self.chica = QtGui.QFont()
+        self.chica.setFamily("Arial")
+        self.chica.setPointSize(10)
+        self.chica.setBold(False)

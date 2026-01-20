@@ -28,7 +28,7 @@ class Mensaje(QtWidgets.QDialog):
 
     """
     
-    def __init__(self, parent, mensaje: str):
+    def __init__(self, mensaje: str):
         """
         
            @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
@@ -42,7 +42,7 @@ class Mensaje(QtWidgets.QDialog):
         """
 
         # llama al constructor del padre
-        super(Mensaje, self).__init__(parent)
+        super().__init__()
         
         # configuramos la interfaz
         self.setupUi(mensaje)
