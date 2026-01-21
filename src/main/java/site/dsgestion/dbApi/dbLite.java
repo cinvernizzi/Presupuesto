@@ -16,7 +16,9 @@ package site.dsgestion.dbApi;
 // importamos las librerías
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class dbLite {
 
@@ -40,16 +42,12 @@ public class dbLite {
                 // Creamos la conexión y la guardamos en el atributo
                 dbLite.enlace = DriverManager.getConnection(url);
                 
-            // si ocurrió un error
-            } catch (SQLException e) {
+            // si ocurrió un error o no pudo registrar el driver
+            } catch (SQLException | ClassNotFoundException e) {
                 
                 // presenta el error
                 e.printStackTrace();			
                 
-            // si no pudo registrar el driver
-            } catch (ClassNotFoundException ex) {
-                ex.printStackTrace();			
-
             }
 
         }
@@ -76,6 +74,39 @@ public class dbLite {
             e.printStackTrace();			
             
         }
+        
+    }
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * @return entero con la clave del último registro insertado
+     * 
+     */
+    public int ultimoInsertado(){
+
+        // declaramos las variables
+        long lastId = 0;
+        
+        // creamos el puntero
+        try (Statement stmt = this.enlace.createStatement();
+
+            // ejecutamos la consulta
+            ResultSet resultado = stmt.executeQuery("SELECT last_insert_rowid()")) {
+
+            // si hubo registros
+            if (resultado.next()) {
+                lastId = resultado.getLong(1);
+            }
+        
+        // si ocurrió un error
+        } catch (SQLException ex) {        
+            System.getLogger(dbLite.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }        
+        
+        // retornamos
+        return (int) lastId;
         
     }
     

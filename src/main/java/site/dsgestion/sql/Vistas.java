@@ -112,6 +112,7 @@ public class Vistas {
                           "              actividades.estimado AS estimado, " +
                           "              actividades.optimo AS optimo, " +
                           "              actividades.pesimista AS pesimista, " + 
+                          "              actividades.total AS total, " +
                           "              actividades.costo AS costo, " + 
                           "              actividades.consideraciones AS consideraciones " +
                           "        FROM actividades INNER JOIN proyectos ON actividades.proyecto = proyectos.id " +
