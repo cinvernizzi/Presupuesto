@@ -154,7 +154,7 @@ public class Secciones {
                           "        etapa, " + 
                           "        fecha) " +
                           "       VALUES " +
-                          "       (?, ?, date('now'); ";
+                          "       (?, ?, date('now')); ";
 
         // instanciamos los valores como de clase
         Registro[] Vector = new Registro[6];

@@ -27,6 +27,11 @@ import site.dsgestion.sql.Verifica;
 public class App {
     
     /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * @param args array con los argumentos
+     * 
      * Constructor de la clase, verifica las bases de 
      * datos y lanza la interfaz
      * 

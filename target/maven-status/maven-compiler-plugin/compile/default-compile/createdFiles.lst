@@ -1,6 +1,7 @@
 site/dsgestion/dbApi/RendererTabla.class
 site/dsgestion/dbApi/Utilidades.class
 site/dsgestion/sql/Proyectos.class
+site/dsgestion/actividades/DbActividades.class
 site/dsgestion/sql/Secciones$Registro.class
 site/dsgestion/dbApi/dbLite.class
 site/dsgestion/presupuesto/App.class

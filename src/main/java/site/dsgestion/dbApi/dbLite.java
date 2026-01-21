@@ -90,7 +90,7 @@ public class dbLite {
         long lastId = 0;
         
         // creamos el puntero
-        try (Statement stmt = this.enlace.createStatement();
+        try (Statement stmt = dbLite.enlace.createStatement();
 
             // ejecutamos la consulta
             ResultSet resultado = stmt.executeQuery("SELECT last_insert_rowid()")) {
