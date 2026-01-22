@@ -362,16 +362,16 @@ public class DbActividades {
             
             // obtenemos el registro y asignamos
             Resultado.next();
-            this.Id = Resultado.getInt(1);
-            this.Proyecto = Resultado.getInt(2);
-            this.Seccion = Resultado.getInt(3);
-            this.Descripcion = Resultado.getString(4);
-            this.Estimado = Resultado.getDouble(7);
-            this.Optimo = Resultado.getDouble(8);
-            this.Pesimista = Resultado.getDouble(9);
-            this.Total = Resultado.getDouble(10);
-            this.Costo = Resultado.getInt(11);
-            this.Consideraciones = Resultado.getString(12);
+            this.Id = Resultado.getInt("id");
+            this.Proyecto = Resultado.getInt("proyecto");
+            this.Seccion = Resultado.getInt("seccion");
+            this.Descripcion = Resultado.getString("descripcion");
+            this.Estimado = Resultado.getDouble("estimado");
+            this.Optimo = Resultado.getDouble("optimo");
+            this.Pesimista = Resultado.getDouble("pesimista");
+            this.Total = Resultado.getDouble("total");
+            this.Costo = Resultado.getInt("costo");
+            this.Consideraciones = Resultado.getString("consideraciones");
             
             // retornamos
             return true;

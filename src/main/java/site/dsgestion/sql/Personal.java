@@ -82,6 +82,7 @@ public final class Personal {
         // componemos la consulta
         String Consulta = "CREATE TABLE personal ( " + 
                           "       id INTEGER NOT NULL, " +
+                          "       nombre TEXT NOT NULL, " +
                           "       empresa TEXT NOT NULL, " + 
                           "       direccion TEXT NOT NULL, " +
                           "       cuil TEXT DEFAULT NULL, " +
