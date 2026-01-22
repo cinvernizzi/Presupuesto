@@ -55,7 +55,7 @@ public class DbActividades {
 
         // inicializamos la conexión y las variables
         this.Enlace = new dbLite();
-        this.Cursor = Enlace.getEnlace();
+        this.Cursor = this.Enlace.getEnlace();
         this.Id = 0;
         this.Proyecto = 0;
         this.Seccion = 0;
@@ -292,7 +292,7 @@ public class DbActividades {
         // componemos la consulta
         String Consulta = "SELECT COUNT(actividades.id) AS registros " +
                           "FROM actividades " +
-                          "WHERE actividades.id = ? AND " +
+                          "WHERE actividades.id != ? AND " +
                           "      actividades.actividad = ?; ";
         
         // capturamos el error
