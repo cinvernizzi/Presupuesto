@@ -1,9 +1,11 @@
 site/dsgestion/dbApi/RendererTabla.class
 site/dsgestion/dbApi/Utilidades.class
 site/dsgestion/sql/Proyectos.class
+site/dsgestion/proyectos/GrillaProyectos.class
 site/dsgestion/actividades/DbActividades.class
 site/dsgestion/secciones/DbSecciones.class
 site/dsgestion/proyectos/DbProyectos.class
+site/dsgestion/clientes/FormClientes.class
 site/dsgestion/sql/Secciones$Registro.class
 site/dsgestion/dbApi/dbLite.class
 site/dsgestion/presupuesto/App.class
@@ -20,4 +22,5 @@ site/dsgestion/sql/Clientes.class
 site/dsgestion/dbApi/calculaFechas.class
 site/dsgestion/sql/Personal.class
 site/dsgestion/sql/Secciones.class
-site/dsgestion/dbApi/fuentes.class
+site/dsgestion/dbApi/Fuentes.class
+site/dsgestion/clientes/GrillaClientes.class

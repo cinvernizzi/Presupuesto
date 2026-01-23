@@ -40,7 +40,7 @@ public class Mensaje extends javax.swing.JDialog {
     public Mensaje(String mensaje) {
 
         // definimos las fuentes
-        fuentes Fuentes = new fuentes();
+        Fuentes Fuentes = new Fuentes();
         
         // fijamos las propiedades
         this.setAlwaysOnTop(true);

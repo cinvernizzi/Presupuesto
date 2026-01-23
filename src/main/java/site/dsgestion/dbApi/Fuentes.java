@@ -22,18 +22,19 @@ import java.io.InputStream;
  * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
  * Definición de la clase
  */
-public class fuentes {
+public class Fuentes {
     
     // definimos las variables
     public Font Normal; 
     public Font Negrita;
     public Font Titulo;
+    public Font Chica;
     
     /**
      * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
      * Constructor de la clase, definimos las fuentes
      */
-    public fuentes(){
+    public Fuentes(){
         
         // capturamos el error
         try {
@@ -48,7 +49,8 @@ public class fuentes {
             // establecemos las variantes
             this.Normal = Fuente.deriveFont(Font.PLAIN, 14f);            
             this.Negrita = Fuente.deriveFont(Font.BOLD, 14f);
-            this.Titulo = Fuente.deriveFont(Font.PLAIN, 16f);
+            this.Titulo = Fuente.deriveFont(Font.BOLD, 16f);
+            this.Chica = Fuente.deriveFont(Font.PLAIN, 12f);
             
         // si ocurrió un error
         } catch (FontFormatException | IOException e) {
