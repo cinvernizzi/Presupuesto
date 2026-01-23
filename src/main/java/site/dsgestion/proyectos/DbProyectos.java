@@ -240,6 +240,9 @@ public class DbProyectos {
         
             // asignamos la consulta y los parámetros 
             PreparedStatement SqlProyectos = this.Cursor.prepareStatement(Consulta);
+            SqlProyectos.setInt(1, idproyecto);
+            SqlProyectos.setInt(2, idcliente);
+            SqlProyectos.setString(3, titulo);
             ResultSet Resultado = SqlProyectos.executeQuery();
             
             // obtenemos el registro y asignamos
