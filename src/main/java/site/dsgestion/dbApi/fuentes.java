@@ -40,7 +40,7 @@ public class fuentes {
             
             // leemos el input stream como recurso para incluir las fuentes 
             // en el archivo jar
-            InputStream inputStream = getClass().getResourceAsStream("/recursos/arial.ttf");            
+            InputStream inputStream = getClass().getResourceAsStream("/fuentes/arial.ttf");            
             
             // creamos la fuente a partir del archivo
             Font Fuente = Font.createFont(Font.TRUETYPE_FONT, inputStream);

@@ -42,6 +42,7 @@ public class App {
         new Verifica();
         
         // aquí lanzamos la interfaz
+        new Inicio();
         
     }
     
