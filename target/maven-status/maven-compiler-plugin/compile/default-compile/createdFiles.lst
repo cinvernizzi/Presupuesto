@@ -17,7 +17,6 @@ site/dsgestion/clientes/DbClientes.class
 site/dsgestion/clientes/EventosClientes.class
 site/dsgestion/sql/Verifica.class
 site/dsgestion/sql/Actividades.class
-site/dsgestion/dbApi/Mensaje$1.class
 site/dsgestion/presupuesto/Inicio.class
 site/dsgestion/sql/Clientes.class
 site/dsgestion/dbApi/calculaFechas.class

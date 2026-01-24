@@ -194,13 +194,13 @@ public class DbClientes {
     protected int editaCliente(){
         
         // componemos la consulta
-        String Consulta = "UPDATE actividades SET " +
+        String Consulta = "UPDATE clientes SET " +
                           "       nombre = ?, " +
                           "       direccion = ?, " +
                           "       identificacion = ?, " +
                           "       telefono = ?, " + 
                           "       mail = ? " +
-                          "WHERE actividades.id = ?; ";
+                          "WHERE clientes.id = ?; ";
 
         // capturamos el error
         try {
