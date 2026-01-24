@@ -18,7 +18,6 @@ package site.dsgestion.dbApi;
 
 // importamos las librerías
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 

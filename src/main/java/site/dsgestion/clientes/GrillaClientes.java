@@ -16,6 +16,7 @@ package site.dsgestion.clientes;
 // importamos las librerías
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import site.dsgestion.dbApi.Fuentes;
 
 
@@ -30,6 +31,8 @@ public class GrillaClientes {
    
     // declaramos los objetos 
     public JTextField tFiltro;
+    public JTable tClientes;
+    protected EventosGrillaClientes Eventos;
     
     /**
      * 
@@ -42,6 +45,9 @@ public class GrillaClientes {
      * 
      */
     public GrillaClientes(JPanel contenedor){
+        
+        // instanciamos la clase de eventos
+        this.Eventos = new EventosGrillaClientes(this);
         
         // configuramos el layout
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
@@ -79,11 +85,76 @@ public class GrillaClientes {
         btnConfigurar.setToolTipText("Configura la aplicación");
         btnConfigurar.setPreferredSize(new Dimension(30, 30));
         ImageIcon icon2 = new ImageIcon(getClass().getResource("/imagenes/apoyo.png"));
-        btnConfigurar.setIcon(icon2);          
+        btnConfigurar.setIcon(icon2);   
+        btnConfigurar.addActionListener(e -> Eventos.verConfiguracion());
         panelFiltros.add(btnConfigurar);
         
         // agregamos al contenedor
         contenedor.add(panelFiltros);
+
+        // definimos un panel para la grilla
+        JPanel panelGrilla = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        
+        // ahora definimos la grilla de clientes
+        JScrollPane scrollClientes = new JScrollPane();
+        scrollClientes.setPreferredSize(new Dimension(270, 480));
+
+        // definimos la tabla de resultados
+        this.tClientes = new JTable();
+        this.tClientes.setModel(new DefaultTableModel(
+            new Object[][] {
+                    {null, null},
+            },
+            new String[] {
+                    "Id",
+                    "Nombre"
+                }
+            ) {
+                @SuppressWarnings("rawtypes")
+                Class[] columnTypes = new Class[] {
+                        Integer.class,
+                        String.class
+                };
+                @SuppressWarnings({ "unchecked", "rawtypes" })
+                public Class getColumnClass(int columnIndex) {
+                    return columnTypes[columnIndex];
+                }
+                boolean[] columnEditables = new boolean[] {
+                        false, false
+                };
+                public boolean isCellEditable(int row, int column) {
+                        return columnEditables[column];
+                }
+        });
+
+        // fijamos el tooltip
+        this.tClientes.setToolTipText("Pulse para seleccionar el cliente");
+
+        // definimos la fuente
+        this.tClientes.setFont(Fuente.Normal);
+
+        // fijamos el ancho de las columnas
+        this.tClientes.getColumn("Id").setMaxWidth(0);
+
+        // fijamos el evento click
+        this.tClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Eventos.cargaCliente(evt);
+            }
+        });
+        
+        // agregamos la tabla al scroll
+        scrollClientes.setViewportView(this.tClientes);
+        
+        // agregamos el scroll
+        panelGrilla.add(scrollClientes);
+        
+        // agregamos el scroll al contenedor
+        contenedor.add(panelGrilla);
+        
+        // cargamos la grilla de clientes
+        Eventos.cargaClientes();
         
     }
     

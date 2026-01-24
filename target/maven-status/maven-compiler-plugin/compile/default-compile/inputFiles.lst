@@ -1,6 +1,7 @@
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/actividades/DbActividades.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/DbClientes.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/EventosClientes.java
+/home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/EventosGrillaClientes.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/FormClientes.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/GrillaClientes.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/dbApi/Fuentes.java
@@ -10,6 +11,7 @@
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/dbApi/calculaFechas.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/dbApi/dbLite.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/personal/DbPersonal.java
+/home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/personal/FormPersonal.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/presupuesto/App.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/presupuesto/Inicio.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/proyectos/DbProyectos.java

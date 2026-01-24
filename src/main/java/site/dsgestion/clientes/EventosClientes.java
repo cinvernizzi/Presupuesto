@@ -118,6 +118,12 @@ public class EventosClientes {
         this.Clientes.setTelefono(this.Formulario.tTelefono.getText());
         this.Clientes.setMail(this.Formulario.tMail.getText());
         
+        // validamos que no esté repetido
+        if (!this.Clientes.validaCliente()){
+            new Mensaje("El cliente ya está ingresado");
+            return;
+        }
+        
         // si llegó hasta aquí grabamos
         int id = this.Clientes.grabaCliente();
         

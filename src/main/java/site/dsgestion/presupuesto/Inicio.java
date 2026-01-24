@@ -151,8 +151,8 @@ public final class Inicio extends JFrame{
         JPanel formClientes = new JPanel();
 
         // configuramos el formulario de clientes
-        new FormClientes(formClientes);
-        
+        new FormClientes(formClientes);        
+
         // lo agregamos al panel contenedor
         contenedorDatos.add(formClientes);
 

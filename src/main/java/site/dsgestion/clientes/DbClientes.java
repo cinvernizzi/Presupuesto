@@ -233,9 +233,6 @@ public class DbClientes {
      * 
      * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
      * 
-     * @param idcliente clave del registro
-     * @param idtributaria clave tributaria del cliente
-     * 
      * @return bool verdadero si puede grabar
      * 
      * Método que recibe como parámetros la clave del cliente 
@@ -243,7 +240,7 @@ public class DbClientes {
      * declarado, en cuyo caso retorna verdadero
      * 
      */
-    public boolean validaCliente(int idcliente, String idtributaria){
+    public boolean validaCliente(){
 
         // componemos la consulta
         String Consulta = "SELECT COUNT(clientes.id) AS registros " +
@@ -256,8 +253,8 @@ public class DbClientes {
         
             // asignamos la consulta y los parámetros 
             PreparedStatement SqlCliente = this.Cursor.prepareStatement(Consulta);
-            SqlCliente.setInt(1, idcliente);
-            SqlCliente.setString(2, idtributaria);
+            SqlCliente.setInt(1, this.Id);
+            SqlCliente.setString(2, this.Identificacion);
             ResultSet Resultado = SqlCliente.executeQuery();
                         
             // obtenemos el registro

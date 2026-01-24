@@ -5,6 +5,7 @@ site/dsgestion/proyectos/GrillaProyectos.class
 site/dsgestion/actividades/DbActividades.class
 site/dsgestion/secciones/DbSecciones.class
 site/dsgestion/proyectos/DbProyectos.class
+site/dsgestion/clientes/GrillaClientes$1.class
 site/dsgestion/clientes/FormClientes.class
 site/dsgestion/sql/Secciones$Registro.class
 site/dsgestion/dbApi/dbLite.class
@@ -13,11 +14,14 @@ site/dsgestion/sql/Vistas.class
 site/dsgestion/sql/Presupuesto.class
 site/dsgestion/personal/DbPersonal.class
 site/dsgestion/dbApi/Mensaje.class
+site/dsgestion/clientes/EventosGrillaClientes.class
 site/dsgestion/clientes/DbClientes.class
 site/dsgestion/clientes/EventosClientes.class
+site/dsgestion/clientes/GrillaClientes$2.class
 site/dsgestion/sql/Verifica.class
 site/dsgestion/sql/Actividades.class
 site/dsgestion/presupuesto/Inicio.class
+site/dsgestion/personal/FormPersonal.class
 site/dsgestion/sql/Clientes.class
 site/dsgestion/dbApi/calculaFechas.class
 site/dsgestion/sql/Personal.class
