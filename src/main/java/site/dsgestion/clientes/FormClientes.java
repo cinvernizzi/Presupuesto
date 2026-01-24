@@ -29,13 +29,14 @@ import site.dsgestion.dbApi.Fuentes;
 public class FormClientes {
     
     // definimos los controles
-    public JTextField tId;            // clave del registro
-    public JTextField tNombre;        // nombre del cliente
-    public JTextField tDireccion;     // dirección postal
-    public JTextField tIdTributaria;  // identificación tributaria
-    public JTextField tTelefono;      // número de teléfono
-    public JTextField tMail;          // dirección de correo
-    public JTextField tFecha;         // fecha de alta
+    public JTextField tId;             // clave del registro
+    public JTextField tNombre;         // nombre del cliente
+    public JTextField tDireccion;      // dirección postal
+    public JTextField tIdTributaria;   // identificación tributaria
+    public JTextField tTelefono;       // número de teléfono
+    public JTextField tMail;           // dirección de correo
+    public JTextField tFecha;          // fecha de alta
+    protected EventosClientes Eventos; // controlador de eventos
     
     /**
      * 
@@ -52,12 +53,15 @@ public class FormClientes {
         // definimos las fuentes
         Fuentes Fuente = new Fuentes();
         
+        // instanciamos la clase de eventos
+        this.Eventos = new EventosClientes(this);
+        
         // definimos el layout
         contenedor.setLayout(new BoxLayout(contenedor, BoxLayout.Y_AXIS));
         
         // agregamos el título
         JPanel pTitulo = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
-        JLabel lTitulo = new JLabel("Datos de los Clientes");
+        JLabel lTitulo = new JLabel("Datos del Cliente");
         lTitulo.setFont(Fuente.Negrita);
         pTitulo.add(lTitulo);
         contenedor.add(pTitulo);
@@ -155,6 +159,7 @@ public class FormClientes {
         btnGrabar.setPreferredSize(new Dimension(120, 30));
         Icon icon1 = new ImageIcon(getClass().getResource("/imagenes/grabar.png"));
         btnGrabar.setIcon(icon1);
+        btnGrabar.addActionListener(e -> Eventos.verificaCliente());
         fila3.add(btnGrabar);
         
         // agregamos el botón cancelar
@@ -164,6 +169,7 @@ public class FormClientes {
         btnCancelar.setPreferredSize(new Dimension(120, 30));
         Icon icon2 = new ImageIcon(getClass().getResource("/imagenes/cancelar.png"));
         btnCancelar.setIcon(icon2);
+        btnCancelar.addActionListener(e -> Eventos.cancelaCliente());
         fila3.add(btnCancelar);
         
         // agregamos la fila al contenedor

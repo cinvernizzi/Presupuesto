@@ -61,14 +61,9 @@ public class Mensaje extends javax.swing.JDialog {
         this.setVisible(true);
 
         // instanciamos el temporizador
-        Temporizador = new Timer(5000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ev) {
-
-                // cerramos el mensaje
-                cerrarMensaje();
-
-            }});
+        Temporizador = new Timer(5000, (ActionEvent ev) -> {
+            cerrarMensaje();
+        });
 
         // iniciamos el timer
         Temporizador.start();

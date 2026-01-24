@@ -146,11 +146,11 @@ public class Utilidades {
     	
         // definimos el formato e inicializamos las variables
         try {
-			 return new SimpleDateFormat("dd/MM/yyyy").parse(fecha);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return null;
-		}
+             return new SimpleDateFormat("dd/MM/yyyy").parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
                 
     }
 

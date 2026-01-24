@@ -1,5 +1,6 @@
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/actividades/DbActividades.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/DbClientes.java
+/home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/EventosClientes.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/FormClientes.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/clientes/GrillaClientes.java
 /home/iceman/Documentos/Fuentes/Java/Presupuesto/src/main/java/site/dsgestion/dbApi/Fuentes.java
