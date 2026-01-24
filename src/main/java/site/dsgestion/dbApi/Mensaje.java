@@ -5,7 +5,7 @@
     Autor: Lic. Claudio Invernizzi
     E-Mail: cinvernizzi@dsgestion.site
     Licencia: GPL
-    Producido en: INP - Dr. Mario Fatala Chaben
+    Producido en: DsGestion
     Buenos Aires - Argentina
     Comentarios: Método que recibe en el constructor un texto
                  a presentar y lo muestra en un diálogo

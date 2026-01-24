@@ -39,7 +39,66 @@ public class EventosPersonal {
 
         // asignamos en la clase
         this.Formulario = formulario;
-        
+
     }
 
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * Método llamado al pulsar el botón cancelar
+     * 
+     */
+    public void cancelaPersonal(){
+
+    }
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * Método llamado al pulsar el botón grabar que verifica 
+     * los datos antes de enviarlo al servidor
+     * 
+     */
+    public void verificaPersonal(){
+
+    }
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * Método llamado desde el constructor que verifica si existe
+     * un registro de datos personales y lo carga
+     * 
+     */
+    protected void getDatosPersonal(){
+
+    }
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * Método llamado al pulsar el botón de secciones que abre
+     * la grilla con la nómina de secciones de un presupuesto
+     * 
+     */
+    public void verSecciones(){
+
+    }
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * Método llamado al pulsar sobre el botón del logo que 
+     * abre el diálogo emergente para cargar la imagen 
+     * 
+     */
+    public void cargaLogo(){
+
+    }
+    
 }

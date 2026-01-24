@@ -6,7 +6,7 @@
     E-Mail: cinvernizzi@dsgestion.site
     Proyecto: diagnostico
     Licencia: GPL
-    Producido en: INP - Dr. Mario Fatala Chaben
+    Producido en: DsGestion
     Buenos Aires - Argentina
 	Comentarios: Clase que provee métodos para el calcula 
                  del tiempo transcurrido entre dos fechas

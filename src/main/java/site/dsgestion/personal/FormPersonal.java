@@ -60,7 +60,7 @@ public final class FormPersonal extends JDialog {
 
         // instanciamos la clase de eventos
         this.Eventos = new EventosPersonal(this);
-        
+
         // fijamos el tamaño
         this.setSize(850, 250);
 
@@ -216,6 +216,7 @@ public final class FormPersonal extends JDialog {
         this.btnLogo.setPreferredSize(new Dimension(60,60));
         Icon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagen_no_disponible.gif"));
         this.btnLogo.setIcon(icon1);
+        this.btnLogo.addActionListener(e -> Eventos.cargaLogo());
         fila3.add(this.btnLogo);
         
         // presenta el botón de secciones
@@ -225,6 +226,7 @@ public final class FormPersonal extends JDialog {
         btnSecciones.setPreferredSize(new Dimension(120, 30));
         Icon icon2 = new ImageIcon(getClass().getResource("/imagenes/secciones.png"));
         btnSecciones.setIcon(icon2);
+        btnSecciones.addActionListener(e -> Eventos.verSecciones());        
         fila3.add(btnSecciones);
         
         // el botón grabar
@@ -234,6 +236,7 @@ public final class FormPersonal extends JDialog {
         btnGrabar.setPreferredSize(new Dimension(120, 30));
         Icon icon3 = new ImageIcon(getClass().getResource("/imagenes/grabar.png"));
         btnGrabar.setIcon(icon3);
+        btnGrabar.addActionListener(e -> Eventos.verificaPersonal());        
         fila3.add(btnGrabar);
         
         // el botón cancelar
@@ -243,6 +246,7 @@ public final class FormPersonal extends JDialog {
         btnCancelar.setPreferredSize(new Dimension(120, 30));
         Icon icon4 = new ImageIcon(getClass().getResource("/imagenes/cancelar.png"));
         btnCancelar.setIcon(icon4);
+        btnCancelar.addActionListener(e -> Eventos.cancelaPersonal());
         fila3.add(btnCancelar);
         
         // agrega la tercer fila

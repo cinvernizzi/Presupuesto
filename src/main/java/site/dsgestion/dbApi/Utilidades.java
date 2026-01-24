@@ -5,7 +5,7 @@
     Autor: Lic. Claudio Invernizzi
     E-Mail: cinvernizzi@dsgestion.site
     Licencia: GPL
-    Producido en: INP - Dr. Mario Fatala Chaben
+    Producido en: DsGestion
     Buenos Aires - Argentina
     Comentarios: Utilidades del sistema, herramientas para conversión de
                  tipos de datos y validación de fechas

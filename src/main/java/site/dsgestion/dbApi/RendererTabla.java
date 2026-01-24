@@ -5,7 +5,7 @@
     Autor: Lic. Claudio Invernizzi
     E-Mail: cinvernizzi@dsgestion.site
     Licencia: GPL
-    Producido en: INP - Dr. Mario Fatala Chaben
+    Producido en: DsGestion
     Buenos Aires - Argentina
     Comentarios: Clase extiende el default renderer de las tablas y genera una
                  etiqueta con la imagen a presentar en la tabla
