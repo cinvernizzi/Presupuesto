@@ -15,6 +15,8 @@ package site.dsgestion.clientes;
 
 // importamos las librerías
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import site.dsgestion.dbApi.Fuentes;
@@ -70,6 +72,14 @@ public class GrillaClientes {
         this.tFiltro.setPreferredSize(new Dimension(200, 30));
         panelFiltros.add(this.tFiltro);
         
+        // agregamos el evento keypress
+        this.tFiltro.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                Eventos.cargaClientes();
+            }           
+        });
+
         // el botón nuevo 
         JButton btnNuevo = new JButton();
         btnNuevo.setFont(Fuente.Normal);
@@ -77,6 +87,7 @@ public class GrillaClientes {
         btnNuevo.setPreferredSize(new Dimension(30, 30));
         Icon icon1 = new ImageIcon(getClass().getResource("/imagenes/nuevo.png"));
         btnNuevo.setIcon(icon1);
+        btnNuevo.addActionListener(e -> Eventos.nuevoCliente());
         panelFiltros.add(btnNuevo);
         
         // el botón configurar 
@@ -157,5 +168,20 @@ public class GrillaClientes {
         Eventos.cargaClientes();
         
     }
-    
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * Método que recibe como parámetro el formulario de clientes
+     * y lo asigna a la variable de clase
+     * 
+     */
+    public void setFormClientes(FormClientes formulario){
+
+        // asignamos en los eventos
+        this.Eventos.FormClientes = formulario;
+
+    }
+
 }

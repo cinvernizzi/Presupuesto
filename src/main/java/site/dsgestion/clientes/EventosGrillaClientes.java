@@ -33,6 +33,7 @@ public class EventosGrillaClientes {
     // definimos la clase 
     protected DbClientes Clientes;
     protected GrillaClientes Formulario;
+    protected FormClientes FormClientes;
     
     /**
      * 
@@ -82,7 +83,7 @@ public class EventosGrillaClientes {
 
         // obtenemos el filtro
         String filtro = this.Formulario.tFiltro.getText();
-        
+
         // obtenemos la nómina 
         ResultSet nomina = this.Clientes.nominaClientes(filtro);
         
@@ -150,8 +151,43 @@ public class EventosGrillaClientes {
 
         // obtenemos la clave
         int idcliente = (Integer) modeloTabla.getValueAt(indice, 0);
-        System.out.println(idcliente);
+
+        // invocamos el evento en el formulario de clientes
+        this.FormClientes.getDatosCliente(idcliente);        
         
     }
-    
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * @param formulario - el formulario de clientes 
+     * 
+     * Método que recibe como parámetro el formulario de clientes
+     * y lo asigna a la clase, de esta forma podemos llamar los 
+     * eventos 
+     * 
+     */
+    public void setFormClientes(FormClientes formulario){
+
+        // fijamos 
+        this.FormClientes = formulario;
+
+    }
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * Método llamado al pulsar el botón nuevo que simplemente 
+     * invoca el método en el formulario de clientes
+     * 
+     */
+    public void nuevoCliente(){
+
+        // invocamos 
+        this.FormClientes.nuevoCliente();
+
+    }
+
 }

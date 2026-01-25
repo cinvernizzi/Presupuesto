@@ -177,4 +177,37 @@ public class FormClientes {
         
     }
     
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * Método llamado al pulsar sobre el botón nuevo en la grilla de 
+     * clientes, solo invoca el método 
+     * 
+     */
+    public void nuevoCliente(){
+
+        // invocamos el método
+        this.Eventos.nuevoCliente();
+
+    }
+
+    /**
+     * 
+     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
+     * 
+     * @param idcliente - entero con la clave del registro
+     * 
+     * Método llamado al pulsar sobre la grilla de clientes 
+     * que recibe como parámetro la clave del registro, 
+     * simplemente invoca el evento
+     * 
+     */
+    public void getDatosCliente(int idcliente){
+
+        // invocamos 
+        this.Eventos.getDatosCliente(idcliente);
+
+    }
+    
 }

@@ -136,7 +136,7 @@ public final class Inicio extends JFrame{
         JPanel grillaClientes = new JPanel();
 
         // configuramos el panel
-        new GrillaClientes(grillaClientes);
+        GrillaClientes nominaClientes = new GrillaClientes(grillaClientes);
 
         // lo agregamos al layout
         this.add(grillaClientes, BorderLayout.WEST);
@@ -151,11 +151,14 @@ public final class Inicio extends JFrame{
         JPanel formClientes = new JPanel();
 
         // configuramos el formulario de clientes
-        new FormClientes(formClientes);        
+        FormClientes formularioClientes = new FormClientes(formClientes);        
 
         // lo agregamos al panel contenedor
         contenedorDatos.add(formClientes);
 
+        // asignamos en la clase de la grilla de clientes
+        nominaClientes.setFormClientes(formularioClientes);
+        
         // definimos el panel de la grilla de proyectos
         JPanel grillaProyectos = new JPanel();
 
