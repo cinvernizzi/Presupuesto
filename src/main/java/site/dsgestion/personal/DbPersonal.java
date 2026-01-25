@@ -276,15 +276,16 @@ public class DbPersonal {
             ResultSet Resultado = SqlPersonal.executeQuery();
             
             // obtenemos el registro y asignamos
-            Resultado.next();
-            this.Id = Resultado.getInt("id");
-            this.Nombre = Resultado.getString("nombre");
-            this.Empresa = Resultado.getString("empresa");
-            this.Direccion = Resultado.getString("direccion");
-            this.Cuil = Resultado.getString("cuil");
-            this.Telefono = Resultado.getString("telefono");
-            this.Mail = Resultado.getString("mail");
-            this.Fecha = Resultado.getString("fecha");
+            if (Resultado.next()){
+                this.Id = Resultado.getInt("id");
+                this.Nombre = Resultado.getString("nombre");
+                this.Empresa = Resultado.getString("empresa");
+                this.Direccion = Resultado.getString("direccion");
+                this.Cuil = Resultado.getString("cuil");
+                this.Telefono = Resultado.getString("telefono");
+                this.Mail = Resultado.getString("mail");
+                this.Fecha = Resultado.getString("fecha");
+            }
             
             // retornamos
             return true;

@@ -13,6 +13,10 @@
 
 // definimos el paquete
 package site.dsgestion.presupuesto;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.File;
 
 // importamos las librerías 
 import site.dsgestion.sql.Verifica;
@@ -38,6 +42,25 @@ public class App {
      */
     public static void main(String[] args) {
         
+        // verificamos que exista el directorio temporal
+        try {
+
+            // definimos la ruta
+            String path = "temp";
+            Path dirPath = Paths.get(path);
+            boolean isDirectory = Files.isDirectory(dirPath);
+
+            // si no existe lo creamos
+            if (!isDirectory) {
+                File directorio = new File(path);
+                directorio.mkdirs();
+            }
+
+        // capturamos el error
+        } catch (Exception e) {
+            System.out.println(e);
+        }        
+
         // verificamos la base de datos 
         new Verifica();
         

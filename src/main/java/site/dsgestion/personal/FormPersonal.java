@@ -214,10 +214,13 @@ public final class FormPersonal extends JDialog {
         this.btnLogo.setFont(Fuente.Normal);
         this.btnLogo.setToolTipText("Pulse para cargar su logo");
         this.btnLogo.setPreferredSize(new Dimension(60,60));
-        Icon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagen_no_disponible.gif"));
+        Icon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagen_no_disponible.png"));
         this.btnLogo.setIcon(icon1);
         this.btnLogo.addActionListener(e -> Eventos.cargaLogo());
         fila3.add(this.btnLogo);
+        
+        // verifica si existe el logo
+        this.Eventos.verificaLogo();
         
         // presenta el botón de secciones
         JButton btnSecciones = new JButton("Secciones");
