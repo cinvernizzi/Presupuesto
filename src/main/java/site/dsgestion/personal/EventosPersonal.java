@@ -13,18 +13,16 @@
 // definimos el paquete
 package site.dsgestion.personal;
 
+// importamos las librerías
 import java.awt.Image;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-// importamos las librerías
 import site.dsgestion.dbApi.Mensaje;
 import site.dsgestion.dbApi.Utilidades;
 
@@ -56,6 +54,8 @@ public class EventosPersonal {
         // asignamos en la clase
         this.Formulario = formulario;
         this.Herramientas = new Utilidades();
+        this.Personal = new DbPersonal();
+        
     }
 
     /**
@@ -157,6 +157,12 @@ public class EventosPersonal {
             new Mensaje("Registro grabado ...");
             this.Formulario.tNombre.requestFocus();
 
+        // si ocurrió un error 
+        } else {
+            
+            // presenta el mensaje
+            new Mensaje("Ha ocurrido un error ...");
+            
         }
 
     }

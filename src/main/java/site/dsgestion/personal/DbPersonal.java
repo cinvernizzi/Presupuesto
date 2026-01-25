@@ -156,7 +156,7 @@ public class DbPersonal {
     
         // componemos la consulta
         String Consulta = "INSERT INTO personal " +
-                          "        nombre, " +
+                          "       (nombre, " +
                           "        empresa, " +
                           "        direccion, " +
                           "        cuil, " +
@@ -227,6 +227,7 @@ public class DbPersonal {
             SqlPersonal.setString(4, this.Cuil);
             SqlPersonal.setString(5, this.Telefono);
             SqlPersonal.setString(6, this.Mail);
+            SqlPersonal.setInt(7, this.Id);
             SqlPersonal.execute();
 
             // retornamos

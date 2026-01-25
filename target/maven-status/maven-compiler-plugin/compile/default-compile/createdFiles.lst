@@ -1,5 +1,6 @@
 site/dsgestion/dbApi/RendererTabla.class
 site/dsgestion/dbApi/Utilidades.class
+site/dsgestion/personal/EventosPersonal.class
 site/dsgestion/sql/Proyectos.class
 site/dsgestion/proyectos/GrillaProyectos.class
 site/dsgestion/actividades/DbActividades.class
@@ -16,6 +17,7 @@ site/dsgestion/personal/DbPersonal.class
 site/dsgestion/dbApi/Mensaje.class
 site/dsgestion/clientes/EventosGrillaClientes.class
 site/dsgestion/clientes/DbClientes.class
+site/dsgestion/clientes/GrillaClientes$3.class
 site/dsgestion/clientes/EventosClientes.class
 site/dsgestion/clientes/GrillaClientes$2.class
 site/dsgestion/sql/Verifica.class

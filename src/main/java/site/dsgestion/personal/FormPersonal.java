@@ -257,6 +257,9 @@ public final class FormPersonal extends JDialog {
 
         // agregamos el panel
         this.add(contenedor);
+
+        // cargamos el registro 
+        this.Eventos.getDatosPersonal();
         
         // mostramos el formulario
         this.setVisible(true);
