@@ -25,6 +25,7 @@ import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import site.dsgestion.dbApi.Mensaje;
 import site.dsgestion.dbApi.Utilidades;
+import site.dsgestion.secciones.GrillaSecciones;
 
 /**
  * 
@@ -205,6 +206,9 @@ public class EventosPersonal {
      */
     public void verSecciones(){
 
+        // instanciamos el formulario
+        new GrillaSecciones();
+        
     }
 
     /**

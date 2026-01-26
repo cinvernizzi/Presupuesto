@@ -165,7 +165,7 @@ public class GrillaClientes {
         contenedor.add(panelGrilla);
         
         // cargamos la grilla de clientes
-        Eventos.cargaClientes();
+        this.Eventos.cargaClientes();
         
     }
 
@@ -180,8 +180,8 @@ public class GrillaClientes {
     public void setFormClientes(FormClientes formulario){
 
         // asignamos en los eventos
-        this.Eventos.FormClientes = formulario;
-
+        this.Eventos.setFormClientes(formulario);
+        
     }
 
 }

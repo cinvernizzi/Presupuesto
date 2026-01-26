@@ -269,7 +269,8 @@ public class DbSecciones {
         // componemos la consulta
         String Consulta = "SELECT secciones.id AS id, " +   
                           "       secciones.orden AS orden, " +
-                          "       secciones.etapa AS etapa " +
+                          "       secciones.etapa AS etapa, " +
+                          "       secciones.fecha AS fecha " +
                           "FROM secciones " +
                           "ORDER BY secciones.orden; ";
 

@@ -79,7 +79,7 @@ public final class FormPersonal extends JDialog {
         int alto = tamanioPantalla.height;
 
         // y ahora lo movemos para centrarlo
-        this.setLocation((ancho - 800)/2, (alto - 350)/2);
+        this.setLocation((ancho - 850)/2, (alto - 350)/2);
 
         // fijamos el ícono
         Image icono = new ImageIcon(getClass().getResource("/imagenes/logo.png")).getImage();
