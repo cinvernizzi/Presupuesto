@@ -26,7 +26,9 @@ import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import site.dsgestion.dbApi.Fuentes;
 
 /**
@@ -55,6 +57,9 @@ public class GrillaSecciones extends JDialog {
         // instanciamos los eventos
         this.Eventos = new EventosSecciones(this);
 
+        // lo fijamos como modal
+        this.setModal(true);
+        
         // fijamos el tamaño
         this.setSize(450, 250);
 
@@ -97,9 +102,6 @@ public class GrillaSecciones extends JDialog {
         // fijamos modal
         this.setModal(true);
 
-        // instanciamos la clase
-        this.Secciones = new DbSecciones();
-
         // definimos las fuentes
         Fuentes Fuente = new Fuentes();
 
@@ -112,6 +114,18 @@ public class GrillaSecciones extends JDialog {
         JLabel lTitulo = new JLabel("Secciones de un Presupuesto");
         lTitulo.setFont(Fuente.Negrita);
         pTitulo.add(lTitulo);
+
+        // definimos el botón nuevo
+        JButton btnNuevo = new JButton();
+        btnNuevo.setFont(Fuente.Normal);
+        btnNuevo.setToolTipText("Ingresa una nueva sección");
+        btnNuevo.setPreferredSize(new Dimension(30, 30));
+        Icon icon1 = new ImageIcon(getClass().getResource("/imagenes/nuevo.png"));
+        btnNuevo.setIcon(icon1);
+        btnNuevo.addActionListener(e -> Eventos.nuevaSeccion());
+        pTitulo.add(btnNuevo);
+
+        // agregamos la fila al contenedor
         Contenedor.add(pTitulo);
 
 		// definimos el scroll
@@ -146,7 +160,7 @@ public class GrillaSecciones extends JDialog {
 				return columnTypes[columnIndex];
 			}
 			boolean[] columnEditables = new boolean[] {
-				false, false, false, false, false, false
+				false, true, true, false, false, false
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
