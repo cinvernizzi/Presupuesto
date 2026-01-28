@@ -21,17 +21,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import site.dsgestion.dbApi.Fuentes;
-import site.dsgestion.dbApi.RendererTabla;
 
 /**
  * 
@@ -45,6 +41,7 @@ public class GrillaSecciones extends JDialog {
     // declaramos las variables
     protected JTable tSecciones;          // tabla con los datos
     protected DbSecciones Secciones;      // puntero a la base
+    protected EventosSecciones Eventos;   // controlador de eventos
 
     /**
      * 
@@ -54,6 +51,9 @@ public class GrillaSecciones extends JDialog {
      * 
      */
     public GrillaSecciones(){
+
+        // instanciamos los eventos
+        this.Eventos = new EventosSecciones(this);
 
         // fijamos el tamaño
         this.setSize(450, 250);
@@ -173,12 +173,12 @@ public class GrillaSecciones extends JDialog {
         // fijamos el evento click
         this.tSecciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tSeccionesMouseClicked(evt);
+                Eventos.tSeccionesMouseClicked(evt);
             }
         });
 
         // cargamos los registros 
-        this.cargaSecciones();
+        this.Eventos.cargaSecciones();
 
         // agregamos el scroll al contenedor
         Contenedor.add(scrollSecciones);
@@ -188,76 +188,6 @@ public class GrillaSecciones extends JDialog {
 
         // mostramos el formulario 
         this.setVisible(true);
-
-    }
-
-    /**
-     * 
-     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
-     * 
-     * @param evt el evento del mouse
-     * 
-     * Método llamado al pulsar sobre un registro que recibe como 
-     * parámetro el evento del mouse
-     * 
-     */
-    protected void tSeccionesMouseClicked(java.awt.event.MouseEvent evt){
-
-    }
-
-    /**
-     * 
-     * @author Claudio Invernizzi <cinvernizzi@dsgestion.site>
-     * 
-     * Método llamado desde el constructor o luego de grabar un registro
-     * que carga la nómina de secciones
-     * 
-     */
-    public void cargaSecciones(){
-
-        // obtenemos la nómina 
-        ResultSet Nomina = this.Secciones.nominaSecciones();
-
-        // sobrecargamos el renderer de la tabla
-        this.tSecciones.setDefaultRenderer(Object.class, new RendererTabla());
-
-        // obtenemos el modelo de la tabla
-        DefaultTableModel modeloTabla = (DefaultTableModel)this.tSecciones.getModel();
-
-    	// hacemos la tabla se pueda ordenar
-		this.tSecciones.setRowSorter (new TableRowSorter<DefaultTableModel>(modeloTabla));
-
-        // limpiamos la tabla
-        modeloTabla.setRowCount(0);
-
-        // definimos el objeto de las filas
-        Object [] fila = new Object[6];
-
-        try {
-
-            // iniciamos un bucle recorriendo el vector
-            while (Nomina.next()){
-
-                // fijamos los valores de la fila
-                fila[0] = Nomina.getInt("id");
-                fila[1] = Nomina.getInt("orden");
-                fila[2] = Nomina.getString("etapa");
-				fila[3] = Nomina.getString("fecha");
-                fila[4] = new JLabel(new ImageIcon(getClass().getResource("/imagenes/editar.png")));
-                fila[5] = new JLabel(new ImageIcon(getClass().getResource("/imagenes/cancelar.png")));
-
-                // lo agregamos
-                modeloTabla.addRow(fila);
-
-            }
-
-        // si hubo un error
-        } catch (SQLException ex){
-
-            // presenta el mensaje
-            System.out.println(ex.getMessage());
-
-        }
 
     }
 
