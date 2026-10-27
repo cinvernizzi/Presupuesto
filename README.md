@@ -1,30 +1,7 @@
-La plataforma utiliza las siguientes librerías que fueron instaladas usando conda
+La aplicación está desarrollada en Java 17 buscando la mayor compatibilidad.
 
-PyInstaller para la creación de ejecutables (ver makefile)
-PySide6     para la implementación de la interfaz
-xlsxwriter  para la generación de las hojas de cálculo
+Está basada en dos videos del canal de TodoCode de Youtube en los cuales la autora una metodología para evaluar los tiempos de desarrollo de una aplicación y en función de estos, generar un presupuesto en el cual se detalle los costos de cada etapa y el importe final.
 
-Está desarrollado en Python 3.11 ya que el soporte de para garantizar la compatibilidad
-con los ejecutables generados
+En los videotutoriales de TodoCode se presentan a través de una planilla de cálculo, que a fin de cuentas es no solo la forma mas sencilla sino también la mas eficiente de generar un presupuesto.
 
-Sistema sencillo de gestión de presupuestos para un desarrollador Freelance
-
-Lo he desarrollado porque tenía infinidad de presupuestos destinados a distintos clientes y 
-realmente necesitaba alguna aplicación sencilla que me permitiera encontrar rápidamente la 
-información, generar el presupuesto, actualizarlo, etc.
-
-Si bien está orientado al desarrollo de software puede ser fácilmente adaptado a otras finalidades.
-
-Ver la carpeta sql en la cual se describe la estructura de las distintas tablas
-
-Consideraciones sobre el PyInstaller, funciona perfectamente en Linux pero al crearlo en 
-Windows en este caso el Defender pone el ejecutable en cuarentena, he revisado la 
-documentación y aparentemente se debe al empaquetado que realiza el PyInstaller
-
-En el caso de Windows recomiendo utilizar el Nuitka que es un poco mas complejo pero 
-el funcionamiento es distinto, traduce a C++ el código Python y luego genera el 
-ejecutable (debemos tener instalado en Windows el Visual C o correr Nuitka con 
-la opción --clang) en estos casos el ejecutable no da ningún tipo de error.
-
-En Linux en cambio el uso de Nuitka es un poco mas completo y siempre he tenido 
-problemas con las dependencias de las librerías
+Me atreví a transformarlo en una aplicación de escritorio con acceso a una base de datos SqLite en parte para adquirir destreza en el uso de la plataforma e independientemente, encontré interesante contar con un sistema que me permitiera tener trazabilidad de los presupuestos generados, el costo final de los mismos, y una tabla de clientes a los que pudiera realizar seguimiento.
