@@ -1,17 +1,8 @@
-La plataforma utiliza las siguientes librerías que fueron instaladas usando conda
+La plataforma está desarrollada en Java 17 con Swing y FlatLaf para el aspecto visual, es un poco obsoleta en este sentido (comparada con JavaFx) pero mas sencilla de implementar.
 
-Nuitka      para la creación de ejecutables (ver makefile)
-PySide6     para la implementación de la interfaz
-xlsxwriter  para la generación de las hojas de cálculo
+Sistema sencillo de gestión de presupuestos para un desarrollador Freelance, está basado en dos videos del canal TodoCode en Youtube en donde la autora presenta una forma práctica de evaluar los tiempos de desarrollo de una aplicación y consiguientemente, el presupuesto resultante.
 
-Está desarrollado en Python 3.10 ya que el soporte de nuitka es experimental 
-para versiones posteriores
-
-Sistema sencillo de gestión de presupuestos para un desarrollador Freelance
-
-Lo he desarrollado porque tenía infinidad de presupuestos destinados a distintos clientes y 
-realmente necesitaba alguna aplicación sencilla que me permitiera encontrar rápidamente la 
-información, generar el presupuesto, actualizarlo, etc.
+Lo he desarrollado porque tenía infinidad de presupuestos destinados a distintos clientes y realmente necesitaba alguna aplicación sencilla que me permitiera encontrar rápidamente la información, generar el presupuesto, actualizarlo, etc.
 
 Si bien está orientado al desarrollo de software puede ser fácilmente adaptado a otras finalidades.
 
